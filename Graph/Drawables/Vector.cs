@@ -61,12 +61,12 @@ namespace Graph.Drawables
         public void Draw(RenderTarget target, RenderStates states)
         {
             // Draw a line from Vector 0 to this Vector
-            DrawVector(target);
+            DrawVectorsLine(target);
 
             target.Draw(Arrow);
         }
 
-        private void DrawVector(RenderTarget target)
+        private void DrawVectorsLine(RenderTarget target)
         {
             target.Draw(new Vertex[]
             {

@@ -1,6 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using Graph.MathUtils;
 using Graph.Drawables;
 
 namespace Graph.Window
@@ -57,14 +58,25 @@ namespace Graph.Window
         {
             using (var render = new RenderTexture(Window.Size.X, Window.Size.Y))
             {
-                Window.SetView(new View(
-                new Vector2f(0, 0),
-                new Vector2f(coordinateSystem.Scale * 2, coordinateSystem.Scale * 2)));
+                render.Clear(BackgroundColor);
+
+                render.SetView(new View(
+                    new Vector2f(0, 0),
+                    new Vector2f(Scale * 2, Scale * 2)
+                    ));
+
                 render.Draw(coordinateSystem);
+
                 render.Display();
 
-                Sprite result = new Sprite(new Texture(render.Texture));
-                result.Origin = new Vector2f(coordinateSystem.Scale / 2, coordinateSystem.Scale / 2);
+                Sprite result = new Sprite(new Texture(render.Texture))
+                {
+                    Origin = (Vector2f)render.Size / 2,
+                    Scale = new Vector2f(
+                        Transformation.KeepSize(Window.Size.X, Scale),
+                        Transformation.KeepSize(Window.Size.Y, Scale)) // Apparently this is the only way I can render background sprite without messing the thickness of the coordinate system
+                };
+
                 BackgroundSprite = result;
             }
         }
@@ -74,7 +86,7 @@ namespace Graph.Window
             if (coordinateSystem.RequiresRedraw)
                 GenerateBackgroundSprite();
 
-            Window.Draw(coordinateSystem);
+            Window.Draw(BackgroundSprite);
         }
 
         protected abstract void DrawElements();

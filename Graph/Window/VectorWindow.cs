@@ -6,6 +6,9 @@ namespace Graph.Window
 {
     public class VectorWindow : GraphWindow
     {
+        /// <summary>
+        /// This vector will be displayed
+        /// </summary>
         public Vector MainVector { get; set; }
 
         /// <param name="width">Width of the window in pixels</param>
@@ -16,7 +19,7 @@ namespace Graph.Window
         /// <param name="coordinateSystemColor">The coordinate system will be drawn in this color</param>
         /// <param name="mainVectorInitialPos">Start position of a main vector</param>
         public VectorWindow(uint width, uint heigth, string name, Color backgroundColor,
-            int initialScale, Color coordinateSystemColor, Vector2f mainVectorInitialPos)
+            Color coordinateSystemColor, int initialScale, Vector2f mainVectorInitialPos)
             : base(width, heigth, name, backgroundColor, coordinateSystemColor, initialScale)
         {
             MainVector = new Vector(mainVectorInitialPos, coordinateSystemColor);

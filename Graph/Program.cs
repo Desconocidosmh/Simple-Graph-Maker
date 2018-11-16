@@ -1,4 +1,6 @@
 ﻿using System;
+using SFML.Window;
+using SFML.System;
 using SFML.Graphics;
 using Graph.MathUtils;
 using Graph.Window;
@@ -10,7 +12,7 @@ namespace Graph
     {
         static void Main(string[] args)
         {
-            var vectorWindow = new VectorWindow(800, 800, "Vector", Color.White, 30, Color.Black, new SFML.System.Vector2f(0, 0));
+            var vectorWindow = new VectorWindow(800, 800, "Vector", Color.White, Color.Black, 30, new Vector2f(0, 0));
 
             while (true)
             {
