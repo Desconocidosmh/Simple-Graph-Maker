@@ -10,7 +10,7 @@ namespace Graph
     {
         static void Main(string[] args)
         {
-            var vectorWindow = new VectorWindow(800, 800, "Vector", Color.White, Color.Black, 2, new Vector2f(0, 0));
+            var vectorWindow = new VectorWindow(800, 800, "Vector", Color.White, Color.Black, 30, new Vector2f(0, 0));
 
             vectorWindow.Refresh();
 
@@ -22,6 +22,8 @@ namespace Graph
                 vectorWindow.Refresh();
 
                 System.Threading.Thread.Sleep(750);
+
+                vectorWindow.Scale -= 2;
             }
         }
     }

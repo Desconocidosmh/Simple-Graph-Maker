@@ -2,12 +2,15 @@
 using Graph.MathUtils;
 using SFML.System;
 
-
 namespace Graph.Drawables
 {
     public class Arrow : Transformable, Drawable
     {
+        #region Constants
+
         private const float DEFAULT_SIZE = 1f;
+
+        #endregion
 
         #region Properties
 
@@ -39,6 +42,8 @@ namespace Graph.Drawables
 
         #endregion
 
+        #region Methods
+
         public void ApplyCorrectRotationForVector(Vector vector)
         {
             float rotation = SpaceMath.AngleBetween(
@@ -49,16 +54,18 @@ namespace Graph.Drawables
 
         public void Draw(RenderTarget target, RenderStates states)
         {
-            var triangle = new CircleShape(Size, 3);
-
-            triangle.Origin = new Vector2f(Size, Size);
-            triangle.Position = Position;
-            triangle.Rotation = Rotation;
-            triangle.OutlineColor = Color;
-            triangle.FillColor = Color;
-
+            var triangle = new CircleShape(Size, 3)
+            {
+                Origin = new Vector2f(Size, Size),
+                Position = Position,
+                Rotation = Rotation,
+                OutlineColor = Color,
+                FillColor = Color
+            };
 
             target.Draw(triangle);
         }
+
+        #endregion
     }
 }

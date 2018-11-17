@@ -1,5 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using Graph.MathUtils;
 
 namespace Graph.Drawables
 {
@@ -140,15 +141,17 @@ namespace Graph.Drawables
 
         private void DrawSpacingLines(RenderTarget target, float lineSize)
         {
+            float m_lineSize = Transformation.KeepSize(0.25f, 30, Scale);
+
             for (uint i = Spacing; i < Scale; i += Spacing)
             {
                 // Draw spacing lines on horizontal line for both sides
-                DrawLineOnPoint(new Vector2f(i, 0), lineSize, false);
-                DrawLineOnPoint(new Vector2f(-i, 0), lineSize, false);
+                DrawLineOnPoint(new Vector2f(i, 0), m_lineSize, false);
+                DrawLineOnPoint(new Vector2f(-i, 0), m_lineSize, false);
 
                 // Draw spacing lines on vertical line for both sides
-                DrawLineOnPoint(new Vector2f(0, i), lineSize, true);
-                DrawLineOnPoint(new Vector2f(0, -i), lineSize, true);
+                DrawLineOnPoint(new Vector2f(0, i), m_lineSize, true);
+                DrawLineOnPoint(new Vector2f(0, -i), m_lineSize, true);
             }
 
             void DrawLineOnPoint(Vector2f point, float size, bool horizontal)
@@ -165,6 +168,7 @@ namespace Graph.Drawables
                 }, PrimitiveType.Lines);
             }
         }
+
         #endregion
     }
 }

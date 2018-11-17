@@ -91,8 +91,8 @@ namespace Graph.Window
                 {
                     Origin = (Vector2f)render.Size / 2,
                     Scale = new Vector2f(
-                        Transformation.KeepSize(Window.Size.X, Scale),
-                        Transformation.KeepSize(Window.Size.Y, Scale)) // Apparently this is the only way I can render background sprite without messing the thickness of the coordinate system
+                        Transformation.KeepSize(1, Window.Size.X, Scale) * 2,
+                        Transformation.KeepSize(1, Window.Size.Y, Scale) * 2) // Apparently this is the only way I can render background sprite without messing the thickness of the coordinate system
                 };
 
                 BackgroundSprite = result;

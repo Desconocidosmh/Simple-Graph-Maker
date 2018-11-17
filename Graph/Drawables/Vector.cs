@@ -58,6 +58,8 @@ namespace Graph.Drawables
 
         #endregion
 
+        #region Methods
+
         public void Draw(RenderTarget target, RenderStates states)
         {
             // Draw a line from Vector 0 to this Vector
@@ -77,5 +79,7 @@ namespace Graph.Drawables
 
         public static implicit operator Vector2f(Vector v) =>
             new Vector2f(v.Position.X, v.Position.Y);
+
+        #endregion
     }
 }
