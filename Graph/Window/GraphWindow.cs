@@ -12,7 +12,19 @@ namespace Graph.Window
 
         protected readonly RenderWindow Window;
 
+        /// <summary>
+        /// This color will be drawn as background
+        /// </summary>
         public Color BackgroundColor { get; set; }
+
+        /// <summary>
+        /// Coordinate system will be drawn in this color
+        /// </summary>
+        public Color CoordinateSystemColor
+        {
+            get => coordinateSystem.Color;
+            set => coordinateSystem.Color = value;
+        }
 
         /// <summary>
         /// Scale of the coordinate system
@@ -22,11 +34,11 @@ namespace Graph.Window
             get => coordinateSystem.Scale;
             set
             {
-                coordinateSystem.Scale = value;
-                //Update window's fov
                 Window.SetView(new View(
                     new Vector2f(0, 0),
-                    new Vector2f(value, value)));
+                    new Vector2f(value * 2, value * 2))); //Update window's fov
+
+                coordinateSystem.Scale = value;
             }
         }
 
@@ -35,6 +47,8 @@ namespace Graph.Window
         private Sprite BackgroundSprite;
 
         #endregion
+
+        #region Constructors
 
         /// <param name="width">Width of the window in pixels</param>
         /// <param name="heigth">Heigth of the window in pixels</param>
@@ -50,9 +64,13 @@ namespace Graph.Window
             Window.SetView(new View(
                 new Vector2f(0, 0),
                 new Vector2f(initialScale * 2, initialScale * 2))); // Translate point (0, 0) to the middle of the screen and apply fov
-            coordinateSystem = new CoordinateSystem(initialScale, coordinateSystemColor);
+            coordinateSystem = new CoordinateSystem(Window ,initialScale, coordinateSystemColor);
             BackgroundColor = backgroundColor;
         }
+
+        #endregion
+
+        #region Methods
 
         private void GenerateBackgroundSprite()
         {
@@ -100,5 +118,7 @@ namespace Graph.Window
 
             Window.Display();
         }
+
+        #endregion
     }
 }

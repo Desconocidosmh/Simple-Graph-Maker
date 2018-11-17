@@ -48,7 +48,7 @@ namespace Graph.Drawables
             Arrow = new Arrow
             {
                 Position = Position,
-                Size = 0.3f,
+                Size = 0.4f,
                 Color = Color
             };
             Arrow.ApplyCorrectRotationForVector(this);

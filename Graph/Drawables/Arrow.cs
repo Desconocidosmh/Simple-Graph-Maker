@@ -1,5 +1,4 @@
-﻿using System;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using Graph.MathUtils;
 using SFML.System;
 
