@@ -1,5 +1,7 @@
-﻿using SFML.Graphics;
+﻿using System;
+using SFML.Graphics;
 using SFML.System;
+using Graph.Window;
 
 namespace Graph.Drawables
 {
@@ -10,29 +12,60 @@ namespace Graph.Drawables
     {
         #region Properties
 
-        private Vector2f Position;
+        public event EventHandler OnChange = delegate { };
+
         /// <summary>
-        /// Position X of the Vector in space
+        /// Position of the Vector in space
         /// </summary>
-        public float X { get => Position.X; }
-        /// <summary>
-        /// Position Y of the Vector in space
-        /// </summary>
-        public float Y { get => Position.Y; }
+        public Vector2f Position
+        {
+            get => position;
+            set
+            {
+                if (position != value)
+                {
+                    position = value;
+                    OnChange(this, EventArgs.Empty);
+                }
+            }
+        }
+        private Vector2f position;
 
         /// <summary>
         /// Size of the vector's arrow 
         /// </summary>
         public float ArrowSize
         {
-            get => Arrow.Size;
-            set => Arrow.Size = value;
+            get => arrowSize;
+            set
+            {
+                if (arrowSize != value)
+                {
+                    arrowSize = value;
+                    OnChange(this, EventArgs.Empty);
+                }
+            }
         }
+        private float arrowSize;
 
         /// <summary>
         /// Color of the vector
         /// </summary>
-        public Color Color { get; set; }
+        public Color Color
+        {
+            get => color;
+            set
+            {
+                if (color != value)
+                {
+                    color = value;
+                    OnChange(this, EventArgs.Empty);
+                }
+            }
+        }
+        private Color color;
+
+        public VectorWindow ParentWindow { get; }
 
         private readonly Arrow Arrow;
 
@@ -40,25 +73,30 @@ namespace Graph.Drawables
 
         #region Constructors
 
-        public Vector(Vector2f vector) : this(vector, Color.White) { }
-        public Vector(Vector2f vector, Color color)
+        public Vector(VectorWindow parentWindow, Vector2f position) : this(parentWindow, position, Color.Black) { }
+        public Vector(VectorWindow parentWindow, Vector2f position, Color color)
         {
-            Position = vector;
+            ParentWindow = parentWindow;
+            this.position = position;
             Color = color;
-            Arrow = new Arrow
-            {
-                Position = Position,
-                Size = 0.4f,
-                Color = Color
-            };
-            Arrow.ApplyCorrectRotationForVector(this);
+            ArrowSize = 1;
+            Arrow = new Arrow(this);
         }
-        public Vector(float x, float y) : this(new Vector2f(x, y)) { }
-        public Vector(float x, float y, Color color) : this(new Vector2f(x, y), color) { }
+        public Vector(VectorWindow parentWindow, float x, float y) : this(parentWindow, new Vector2f(x, y)) { }
+        public Vector(VectorWindow parentWindow, float x, float y, Color color) : this(parentWindow, new Vector2f(x, y), color) { }
 
         #endregion
 
         #region Methods
+
+        private void DrawVectorsLine(RenderTarget target)
+        {
+            target.Draw(new Vertex[]
+            {
+                new Vertex(new Vector2f(), Color),
+                new Vertex(ParentWindow.ToWindowCoords(Position), Color)
+            }, PrimitiveType.LinesStrip);
+        }
 
         public void Draw(RenderTarget target, RenderStates states)
         {
@@ -68,17 +106,7 @@ namespace Graph.Drawables
             target.Draw(Arrow);
         }
 
-        private void DrawVectorsLine(RenderTarget target)
-        {
-            target.Draw(new Vertex[]
-            {
-                new Vertex(new Vector2f(), Color),
-                new Vertex(Position, Color)
-            }, PrimitiveType.LinesStrip);
-        }
-
-        public static implicit operator Vector2f(Vector v) =>
-            new Vector2f(v.Position.X, v.Position.Y);
+        public static implicit operator Vector2f(Vector v) => v.Position;
 
         #endregion
     }

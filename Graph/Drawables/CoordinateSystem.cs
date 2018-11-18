@@ -1,6 +1,7 @@
-﻿using SFML.Graphics;
+﻿using System;
+using SFML.Graphics;
 using SFML.System;
-using Graph.MathUtils;
+using Graph.Window;
 
 namespace Graph.Drawables
 {
@@ -23,7 +24,9 @@ namespace Graph.Drawables
 
         #region Properties
 
-        private readonly RenderWindow Window;
+        private readonly GraphWindow Window;
+
+        public event EventHandler OnChange = delegate { };
 
         /// <summary>
         /// Scale of this CoordinateSystem
@@ -37,27 +40,48 @@ namespace Graph.Drawables
             get => scale;
             set
             {
-                scale = value;
-                RequiresRedraw = true;
+                if (value != scale)
+                {
+                    scale = value;
+                    OnChange.Invoke(this, EventArgs.Empty);
+                }
             }
         }
         private int scale;
 
-        public float SpacingLinesSize { get; set; }
+        /// <summary>
+        /// Size of the small lines dividing coordinate system into smaller parts
+        /// </summary>
+        public float SpacingLinesSize
+        {
+            get => spacingLinesSize;
+            set
+            {
+                if (value != scale)
+                {
+                    spacingLinesSize = value;
+                    OnChange.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+        private float spacingLinesSize;
 
         /// <summary>
         /// Spacing of this CoordinateSystem
         /// </summary>
-        public uint Spacing
+        public float Spacing
         {
             get => spacing;
             set
             {
-                spacing = value;
-                RequiresRedraw = true;
+                if (value != spacing)
+                {
+                    spacing = value;
+                    OnChange.Invoke(this, EventArgs.Empty);
+                }
             }
         }
-        private uint spacing;
+        private float spacing;
 
         /// <summary>
         /// Color of this CoordinateSystem
@@ -67,14 +91,19 @@ namespace Graph.Drawables
             get => color;
             set
             {
-                color = value;
-                RequiresRedraw = true;
+                if (value != color)
+                {
+                    color = value;
+                    OnChange.Invoke(this, EventArgs.Empty);
+                }
             }
         }
         private Color color;
 
+        /// <summary>
+        /// Has this coordinate system changed since last redraw
+        /// </summary>
         public bool RequiresRedraw { get; private set; }
-
 
         #endregion
 
@@ -83,31 +112,33 @@ namespace Graph.Drawables
         /// <param name="window">
         /// Window on which this coordinate system will be displayed
         /// </param>
-        public CoordinateSystem(RenderWindow window) : this(window, DEFAULT_SCALE, DEFAULT_SPACING, DEFAULT_COLOR) { }
+        public CoordinateSystem(GraphWindow window) : this(window, DEFAULT_SCALE, DEFAULT_SPACING, DEFAULT_COLOR) { }
         /// <param name="window">Window on which this coordinate system will be displayed</param>
         /// <param name="scale">Initial scale</param>
-        public CoordinateSystem(RenderWindow window, int scale) : this(window, scale, DEFAULT_SPACING, DEFAULT_COLOR) { }
+        public CoordinateSystem(GraphWindow window, int scale) : this(window, scale, DEFAULT_SPACING, DEFAULT_COLOR) { }
         /// <param name="window">Window on which this coordinate system will be displayed</param>
         /// <param name="color">Initial color</param>
-        public CoordinateSystem(RenderWindow window, Color color) : this(window, DEFAULT_SCALE, DEFAULT_SPACING, color) { }
+        public CoordinateSystem(GraphWindow window, Color color) : this(window, DEFAULT_SCALE, DEFAULT_SPACING, color) { }
         /// <param name="window">Window on which this coordinate system will be displayed</param>
         /// <param name="scale">Initial scale</param>
         /// <param name="spacing">Initial spacing</param>
-        public CoordinateSystem(RenderWindow window, int scale, uint spacing) : this(window, scale, spacing, DEFAULT_COLOR) { }
+        public CoordinateSystem(GraphWindow window, int scale, uint spacing) : this(window, scale, spacing, DEFAULT_COLOR) { }
         /// <param name="window">Window on which this coordinate system will be displayed</param>
         /// <param name="scale">Initial scale</param>
         /// <param name="color">Initial color</param>
-        public CoordinateSystem(RenderWindow window, int scale, Color color) : this(window, scale, DEFAULT_SPACING, color) { }
+        public CoordinateSystem(GraphWindow window, int scale, Color color) : this(window, scale, DEFAULT_SPACING, color) { }
         /// <param name="window">Window on which this CoordinateSystem will be displayed</param>
         /// <param name="scale">Initial scale</param>
         /// <param name="spacing">Initial spacing</param>
         /// <param name="color">Initial color</param>
-        public CoordinateSystem(RenderWindow window, int scale, uint spacing, Color color)
+        public CoordinateSystem(GraphWindow window, int scale, uint spacing, Color color)
         {
             Window = window;
             Scale = scale;
             Spacing = spacing;
             Color = color;
+
+            OnChange += (s, e) => RequiresRedraw = true;
         }
 
         #endregion
@@ -117,7 +148,7 @@ namespace Graph.Drawables
         public void Draw(RenderTarget target, RenderStates states)
         {
             DrawMainLines(target);
-            DrawSpacingLines(target, 0.25f);
+            DrawSpacingLines(target, 0.5f);
 
             RequiresRedraw = false;
         }
@@ -127,31 +158,29 @@ namespace Graph.Drawables
             // Draw horizontal line
             target.Draw(new Vertex[]
             {
-                new Vertex(new Vector2f(-Scale, 0), Color),
-                new Vertex(new Vector2f(Scale, 0), Color)
+                new Vertex(Window.ToWindowCoords(new Vector2f(-Scale, 0)), Color),
+                new Vertex(Window.ToWindowCoords(new Vector2f(Scale, 0)), Color)
             }, PrimitiveType.Lines);
 
             // Draw vertical line
             target.Draw(new Vertex[]
             {
-                new Vertex(new Vector2f(0, -Scale), Color),
-                new Vertex(new Vector2f(0, Scale), Color)
+                new Vertex(Window.ToWindowCoords(new Vector2f(0, -Scale)), Color),
+                new Vertex(Window.ToWindowCoords(new Vector2f(0, Scale)), Color)
             }, PrimitiveType.Lines);
         }
 
         private void DrawSpacingLines(RenderTarget target, float lineSize)
         {
-            float m_lineSize = Transformation.KeepSize(0.25f, 30, Scale);
-
-            for (uint i = Spacing; i < Scale; i += Spacing)
+            for (float i = Spacing; i < Scale; i += Spacing)
             {
                 // Draw spacing lines on horizontal line for both sides
-                DrawLineOnPoint(new Vector2f(i, 0), m_lineSize, false);
-                DrawLineOnPoint(new Vector2f(-i, 0), m_lineSize, false);
+                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(i, 0)), lineSize, false);
+                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(-i, 0)), lineSize, false);
 
                 // Draw spacing lines on vertical line for both sides
-                DrawLineOnPoint(new Vector2f(0, i), m_lineSize, true);
-                DrawLineOnPoint(new Vector2f(0, -i), m_lineSize, true);
+                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(0, i)), lineSize, true);
+                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(0, -i)), lineSize, true);
             }
 
             void DrawLineOnPoint(Vector2f point, float size, bool horizontal)

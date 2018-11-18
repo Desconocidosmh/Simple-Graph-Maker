@@ -1,52 +1,14 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
 using Graph.MathUtils;
 using Graph.Drawables;
 
 namespace Graph.Window
 {
-    public abstract class GraphWindow
+    public abstract class GraphWindow : BaseWindow
     {
-        #region Properties
 
-        protected readonly RenderWindow Window;
-
-        /// <summary>
-        /// This color will be drawn as background
-        /// </summary>
-        public Color BackgroundColor { get; set; }
-
-        /// <summary>
-        /// Coordinate system will be drawn in this color
-        /// </summary>
-        public Color CoordinateSystemColor
-        {
-            get => coordinateSystem.Color;
-            set => coordinateSystem.Color = value;
-        }
-
-        /// <summary>
-        /// Scale of the coordinate system
-        /// </summary>
-        public int Scale
-        {
-            get => coordinateSystem.Scale;
-            set
-            {
-                Window.SetView(new View(
-                    new Vector2f(0, 0),
-                    new Vector2f(value * 2, value * 2))); //Update window's fov
-
-                coordinateSystem.Scale = value;
-            }
-        }
-
-        private CoordinateSystem coordinateSystem;
-
-        private Sprite BackgroundSprite;
-
-        #endregion
+        public CoordinateSystem CoordinateSystem { get; private set; }
 
         #region Constructors
 
@@ -57,66 +19,44 @@ namespace Graph.Window
         /// <param name="initialScale">The coordinate system will have this as it's max value</param>
         /// <param name="coordinateSystemColor">The coordinate system will be drawn in this color</param>
         public GraphWindow(uint width, uint heigth, string name, Color backgroundColor, Color coordinateSystemColor, int initialScale)
+            : base(width, heigth, name, backgroundColor)
         {
-            Window = new RenderWindow(
-                new VideoMode(width, heigth),
-                name);
-            Window.SetView(new View(
-                new Vector2f(0, 0),
-                new Vector2f(initialScale * 2, initialScale * 2))); // Translate point (0, 0) to the middle of the screen and apply fov
-            coordinateSystem = new CoordinateSystem(Window ,initialScale, coordinateSystemColor);
-            BackgroundColor = backgroundColor;
+            CoordinateSystem = new CoordinateSystem(this, initialScale, coordinateSystemColor);
         }
 
         #endregion
 
         #region Methods
 
-        private void GenerateBackgroundSprite()
+        protected override void DrawBackground(RenderTarget target)
         {
-            using (var render = new RenderTexture(Window.Size.X, Window.Size.Y))
-            {
-                render.Clear(BackgroundColor);
-
-                render.SetView(new View(
-                    new Vector2f(0, 0),
-                    new Vector2f(Scale * 2, Scale * 2)
-                    ));
-
-                render.Draw(coordinateSystem);
-
-                render.Display();
-
-                Sprite result = new Sprite(new Texture(render.Texture))
-                {
-                    Origin = (Vector2f)render.Size / 2,
-                    Scale = new Vector2f(
-                        Transformation.KeepSize(1, Window.Size.X, Scale) * 2,
-                        Transformation.KeepSize(1, Window.Size.Y, Scale) * 2) // Apparently this is the only way I can render background sprite without messing the thickness of the coordinate system
-                };
-
-                BackgroundSprite = result;
-            }
+            target.Draw(CoordinateSystem);
         }
 
-        private void DrawBackground()
+        /// <summary>
+        /// Transform graph coords to window coords
+        /// </summary>
+        /// <param name="pos">Origin position</param>
+        /// <returns>Graph coords transformed into window coords</returns>
+        public Vector2f ToWindowCoords(Vector2f pos)
         {
-            if (coordinateSystem.RequiresRedraw)
-                GenerateBackgroundSprite();
+            float X = Interpolation.Map(pos.X, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2, -Window.GetView().Size.X, Window.GetView().Size.X);
+            float Y = Interpolation.Map(pos.Y, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2, -Window.GetView().Size.Y, Window.GetView().Size.Y);
 
-            Window.Draw(BackgroundSprite);
+            return new Vector2f(X, Y);
         }
 
-        protected abstract void DrawElements();
-
-        public void Refresh()
+        /// <summary>
+        /// Transform window coords to graph coords
+        /// </summary>
+        /// <param name="pos">Origin position</param>
+        /// <returns>Window coords transformed into graph coords</returns>
+        public Vector2f ToGraphCoords(Vector2f pos)
         {
-            Window.Clear(BackgroundColor);
+            float X = Interpolation.Map(pos.X, -Window.GetView().Size.X, Window.GetView().Size.X, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2);
+            float Y = Interpolation.Map(pos.Y, -Window.GetView().Size.Y, Window.GetView().Size.Y, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2);
 
-            DrawBackground();
-            DrawElements();
-
-            Window.Display();
+            return new Vector2f(X, Y);
         }
 
         #endregion

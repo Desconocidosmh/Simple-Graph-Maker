@@ -17,39 +17,38 @@ namespace Graph.Drawables
         /// <summary>
         /// Size of the arrow
         /// </summary>
-        public float Size { get; set; }
+        public float Size { get; set; } = 1;
 
         /// <summary>
         /// Color of the arrow
         /// </summary>
         public Color Color { get; set; }
 
+        public Vector ParentVector { get; }
+
         #endregion
 
         #region Constructors
 
-        public Arrow() : this(new Vector2f()) { }
-        public Arrow(Vector2f position) : this(position, 0) { }
-        public Arrow(Vector2f position, float rotation) : this(position, rotation, DEFAULT_SIZE) { }
-        public Arrow(Vector2f position, float rotation, float size)
+        public Arrow(Vector parentVector)
         {
-            Position = position;
-            Rotation = rotation;
-            Size = size;
-
-            Color = Color.Black;
+            ParentVector = parentVector;
+            DeriveFromVector(ParentVector);
+            ParentVector.OnChange += (s, e) => DeriveFromVector(ParentVector);
         }
 
         #endregion
 
         #region Methods
 
-        public void ApplyCorrectRotationForVector(Vector vector)
+        private void DeriveFromVector(Vector vector)
         {
-            float rotation = SpaceMath.AngleBetween(
+            Position = vector.Position;
+            Rotation = SpaceMath.AngleBetween(
                 new Vector2f(0, 0),
                 vector) - 30;
-            Rotation = rotation;
+            Color = vector.Color;
+            Size = vector.ArrowSize;
         }
 
         public void Draw(RenderTarget target, RenderStates states)
@@ -57,7 +56,7 @@ namespace Graph.Drawables
             var triangle = new CircleShape(Size, 3)
             {
                 Origin = new Vector2f(Size, Size),
-                Position = Position,
+                Position = ParentVector.ParentWindow.ToWindowCoords(Position),
                 Rotation = Rotation,
                 OutlineColor = Color,
                 FillColor = Color

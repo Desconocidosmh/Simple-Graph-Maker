@@ -9,7 +9,7 @@ namespace Graph.Window
         /// <summary>
         /// This vector will be displayed
         /// </summary>
-        public Vector MainVector { get; set; }
+        public Vector MainVector { get; }
 
         /// <param name="width">Width of the window in pixels</param>
         /// <param name="heigth">Heigth of the window in pixels</param>
@@ -22,12 +22,9 @@ namespace Graph.Window
             Color coordinateSystemColor, int initialScale, Vector2f mainVectorInitialPos)
             : base(width, heigth, name, backgroundColor, coordinateSystemColor, initialScale)
         {
-            MainVector = new Vector(mainVectorInitialPos, coordinateSystemColor);
+            MainVector = new Vector(this, mainVectorInitialPos, coordinateSystemColor);
         }
 
-        protected override void DrawElements()
-        {
-            Window.Draw(MainVector);
-        }
+        protected override void DrawElements(RenderTarget target) => target.Draw(MainVector);
     }
 }

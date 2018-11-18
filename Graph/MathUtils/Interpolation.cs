@@ -62,6 +62,25 @@ namespace Graph.MathUtils
             float result = Lerp(secondStart, secondEnd, lerp);
             return result;
         }
+        /// <summary>
+        /// Maps vector to another vector
+        /// </summary>
+        /// <param name="value">Vector to map</param>
+        /// <param name="firstStart">Bottom vector of the original</param>
+        /// <param name="firstEnd">Top vector of the original</param>
+        /// <param name="secondStart">Bottom vector of the target</param>
+        /// <param name="secondEnd">Top vector of the target</param>
+        /// <returns>Vector mapped to different vector</returns>
+        public static Vector2f Map(Vector2f value, Vector2f firstStart, Vector2f firstEnd, Vector2f secondStart, Vector2f secondEnd)
+        {
+            float lerpX = Rlerp(value.X, firstStart.X, firstEnd.X);
+            float resultX = Lerp(secondStart.X, secondEnd.X, lerpX);
+
+            float lerpY = Rlerp(value.Y, firstStart.Y, firstEnd.Y);
+            float resultY = Lerp(secondStart.Y, secondEnd.Y, lerpY);
+
+            return new Vector2f(resultX, resultY);
+        }
         ///// <summary>
         ///// Maps vector to another coordinates based on original coordinates
         ///// </summary>
