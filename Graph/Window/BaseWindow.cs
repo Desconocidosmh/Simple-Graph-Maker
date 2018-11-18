@@ -33,7 +33,7 @@ namespace Graph.Window
         {
             Window = new RenderWindow(
                 new VideoMode(width, heigth),
-                name);
+                name, Styles.None);
             Window.SetView(new View(
                 new Vector2f(0, 0),
                 new Vector2f(DEFAULT_FOV * 2, DEFAULT_FOV * 2))); // Translate point (0, 0) to the middle of the screen and apply fov (times 2 because both sides)

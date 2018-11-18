@@ -15,16 +15,12 @@ namespace Graph
             vectorWindow.Refresh();
 
             while (true)
-            {
-                vectorWindow.Refresh();
-
-                vectorWindow.CoordinateSystem.Color = Color.Red;
-
+            { 
                 vectorWindow.CoordinateSystem.Scale -= 1;
 
+                vectorWindow.Refresh();
+
                 System.Threading.Thread.Sleep(750);
-
-
             }
         }
     }

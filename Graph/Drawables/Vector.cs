@@ -54,7 +54,7 @@ namespace Graph.Drawables
         public Color Color
         {
             get => color;
-            set
+            private set
             {
                 if (color != value)
                 {
@@ -81,6 +81,8 @@ namespace Graph.Drawables
             Color = color;
             ArrowSize = 1;
             Arrow = new Arrow(this);
+            parentWindow.CoordinateSystem.OnChange += (s, e) => 
+                Color = parentWindow.CoordinateSystem.Color;
         }
         public Vector(VectorWindow parentWindow, float x, float y) : this(parentWindow, new Vector2f(x, y)) { }
         public Vector(VectorWindow parentWindow, float x, float y, Color color) : this(parentWindow, new Vector2f(x, y), color) { }
