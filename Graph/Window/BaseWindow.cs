@@ -21,6 +21,11 @@ namespace Graph.Window
         /// </summary>
         public Color BackgroundColor { get; set; }
 
+        /// <summary>
+        /// Resolution of this window
+        /// </summary>
+        public Vector2u Resolution => Window.Size;
+
         #endregion
 
         #region Constructors
@@ -46,7 +51,7 @@ namespace Graph.Window
 
         protected virtual void DrawBackground(RenderTarget target) { }
 
-        protected virtual void DrawElements(RenderTarget target) { }
+        protected abstract void DrawElements(RenderTarget target);
 
         public void Refresh()
         {

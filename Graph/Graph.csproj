@@ -83,6 +83,7 @@
     <Compile Include="Attributes\MenuItemAttribute.cs" />
     <Compile Include="Drawables\Arrow.cs" />
     <Compile Include="Drawables\CoordinateSystem.cs" />
+    <Compile Include="Drawables\CubicFunction.cs" />
     <Compile Include="Drawables\Vector.cs" />
     <Compile Include="MathUtils\Transformation.cs" />
     <Compile Include="MathUtils\Generator.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Window\BaseWindow.cs" />
+    <Compile Include="Window\CubicWindow.cs" />
     <Compile Include="Window\GraphWindow.cs" />
     <Compile Include="Window\VectorWindow.cs" />
   </ItemGroup>

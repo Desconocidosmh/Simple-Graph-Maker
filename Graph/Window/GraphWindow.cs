@@ -7,7 +7,6 @@ namespace Graph.Window
 {
     public abstract class GraphWindow : BaseWindow
     {
-
         #region Properties
 
         public CoordinateSystem CoordinateSystem { get; private set; }

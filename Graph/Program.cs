@@ -1,4 +1,5 @@
-﻿using SFML.System;
+﻿using System;
+using SFML.System;
 using SFML.Graphics;
 using Graph.MathUtils;
 using Graph.Window;
@@ -10,17 +11,25 @@ namespace Graph
     {
         static void Main(string[] args)
         {
-            var vectorWindow = new VectorWindow(800, 800, "Vector", Color.White, Color.Black, 30, new Vector2f(10, 10));
+            var cubicWindow = new CubicWindow(800, 800, "Cubic", Color.White, Color.Black, 30, 0.5f, -2, 6);
 
-            vectorWindow.Refresh();
+            cubicWindow.Refresh();
 
             while (true)
-            { 
-                vectorWindow.CoordinateSystem.Scale -= 1;
+            {
+                Console.Clear();
+                Console.WriteLine("A:{0:0.00} B:{1:0.00} C:{2:0.00}",
+                    cubicWindow.Function.A, cubicWindow.Function.B, cubicWindow.Function.C);
+                Console.WriteLine("Delta:{0:0.00}", cubicWindow.Function.Delta);
 
-                vectorWindow.Refresh();
+                Console.WriteLine(cubicWindow.Function.Calculate(1));
 
-                System.Threading.Thread.Sleep(750);
+                Console.WriteLine(cubicWindow.Function.Calculate(1));
+
+                cubicWindow.Function.B += 0.01f;
+
+                cubicWindow.Refresh();
+                System.Threading.Thread.Sleep(10);
             }
         }
     }
