@@ -81,9 +81,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\MenuItemAttribute.cs" />
-    <Compile Include="Drawables\Arrow.cs" />
     <Compile Include="Drawables\CoordinateSystem.cs" />
-    <Compile Include="Drawables\CubicFunction.cs" />
+    <Compile Include="Drawables\SquareFunction.cs" />
+    <Compile Include="Drawables\Subdrawables\Arrow.cs" />
+    <Compile Include="Drawables\Subdrawables\SpacingLine.cs" />
+    <Compile Include="Drawables\Subdrawables\SpacingLineCollection.cs" />
     <Compile Include="Drawables\Vector.cs" />
     <Compile Include="MathUtils\Transformation.cs" />
     <Compile Include="MathUtils\Generator.cs" />
@@ -98,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Resources\Fonts\Roboto-Medium.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">

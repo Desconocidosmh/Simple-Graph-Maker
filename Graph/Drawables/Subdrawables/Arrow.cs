@@ -2,7 +2,7 @@
 using Graph.MathUtils;
 using SFML.System;
 
-namespace Graph.Drawables
+namespace Graph.Drawables.Subdrawables
 {
     public class Arrow : Transformable, Drawable
     {

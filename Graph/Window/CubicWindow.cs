@@ -7,7 +7,7 @@ namespace Graph.Window
     {
         #region Properties
 
-        public CubicFunction Function { get; }
+        public SquareFunction Function { get; }
 
         #endregion
 
@@ -17,7 +17,7 @@ namespace Graph.Window
             Color coordinateSystemColor, int initialScale, float a, float b, float c)
             : base(width, heigth, name, backgroundColor, coordinateSystemColor, initialScale)
         {
-            Function = new CubicFunction(this, a, b ,c);
+            Function = new SquareFunction(this, a, b ,c);
         }
 
         #endregion

@@ -2,6 +2,7 @@
 using SFML.Graphics;
 using SFML.System;
 using Graph.Window;
+using Graph.Drawables.Subdrawables;
 
 namespace Graph.Drawables
 {
@@ -24,7 +25,7 @@ namespace Graph.Drawables
 
         #region Properties
 
-        private readonly GraphWindow Window;
+        private readonly GraphWindow ParentWindow;
 
         public event EventHandler OnChange = delegate { };
 
@@ -133,7 +134,7 @@ namespace Graph.Drawables
         /// <param name="color">Initial color</param>
         public CoordinateSystem(GraphWindow window, int scale, uint spacing, Color color)
         {
-            Window = window;
+            ParentWindow = window;
             Scale = scale;
             Spacing = spacing;
             Color = color;
@@ -158,45 +159,20 @@ namespace Graph.Drawables
             // Draw horizontal line
             target.Draw(new Vertex[]
             {
-                new Vertex(Window.ToWindowCoords(new Vector2f(-Scale, 0)), Color),
-                new Vertex(Window.ToWindowCoords(new Vector2f(Scale, 0)), Color)
+                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(-Scale, 0)), Color),
+                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(Scale, 0)), Color)
             }, PrimitiveType.Lines);
 
             // Draw vertical line
             target.Draw(new Vertex[]
             {
-                new Vertex(Window.ToWindowCoords(new Vector2f(0, -Scale)), Color),
-                new Vertex(Window.ToWindowCoords(new Vector2f(0, Scale)), Color)
+                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(0, -Scale)), Color),
+                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(0, Scale)), Color)
             }, PrimitiveType.Lines);
         }
 
-        private void DrawSpacingLines(RenderTarget target, float lineSize)
-        {
-            for (float i = Spacing; i < Scale; i += Spacing)
-            {
-                // Draw spacing lines on horizontal line for both sides
-                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(i, 0)), lineSize, false);
-                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(-i, 0)), lineSize, false);
-
-                // Draw spacing lines on vertical line for both sides
-                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(0, i)), lineSize, true);
-                DrawLineOnPoint(Window.ToWindowCoords(new Vector2f(0, -i)), lineSize, true);
-            }
-
-            void DrawLineOnPoint(Vector2f point, float size, bool horizontal)
-            {
-                Vector2f start = horizontal ?
-                    new Vector2f(point.X - size, point.Y) : new Vector2f(point.X, point.Y - size);
-                Vector2f end = horizontal ?
-                    new Vector2f(point.X + size, point.Y) : new Vector2f(point.X, point.Y + size);
-
-                target.Draw(new Vertex[]
-                {
-                    new Vertex(start, Color),
-                    new Vertex(end, Color)
-                }, PrimitiveType.Lines);
-            }
-        }
+        private void DrawSpacingLines(RenderTarget target, float lineSize) =>
+            target.Draw(new SpacingLineCollection(ParentWindow, lineSize));
 
         #endregion
     }

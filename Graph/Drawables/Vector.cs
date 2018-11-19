@@ -2,6 +2,7 @@
 using SFML.Graphics;
 using SFML.System;
 using Graph.Window;
+using Graph.Drawables.Subdrawables;
 
 namespace Graph.Drawables
 {
@@ -65,7 +66,7 @@ namespace Graph.Drawables
         }
         private Color color;
 
-        public VectorWindow ParentWindow { get; }
+        public GraphWindow ParentWindow { get; }
 
         private readonly Arrow Arrow;
 
@@ -73,8 +74,8 @@ namespace Graph.Drawables
 
         #region Constructors
 
-        public Vector(VectorWindow parentWindow, Vector2f position) : this(parentWindow, position, Color.Black) { }
-        public Vector(VectorWindow parentWindow, Vector2f position, Color color)
+        public Vector(GraphWindow parentWindow, Vector2f position) : this(parentWindow, position, Color.Black) { }
+        public Vector(GraphWindow parentWindow, Vector2f position, Color color)
         {
             ParentWindow = parentWindow;
             this.position = position;
@@ -84,8 +85,8 @@ namespace Graph.Drawables
             parentWindow.CoordinateSystem.OnChange += (s, e) => 
                 Color = parentWindow.CoordinateSystem.Color;
         }
-        public Vector(VectorWindow parentWindow, float x, float y) : this(parentWindow, new Vector2f(x, y)) { }
-        public Vector(VectorWindow parentWindow, float x, float y, Color color) : this(parentWindow, new Vector2f(x, y), color) { }
+        public Vector(GraphWindow parentWindow, float x, float y) : this(parentWindow, new Vector2f(x, y)) { }
+        public Vector(GraphWindow parentWindow, float x, float y, Color color) : this(parentWindow, new Vector2f(x, y), color) { }
 
         #endregion
 

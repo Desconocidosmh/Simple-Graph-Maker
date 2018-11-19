@@ -7,7 +7,7 @@ using SFML.Graphics;
 
 namespace Graph.Drawables
 {
-    public class CubicFunction : Drawable
+    public class SquareFunction : Drawable
     {
         #region Properties
 
@@ -19,13 +19,13 @@ namespace Graph.Drawables
 
         public Color Color { get; set; }
 
-        public CubicWindow ParentWindow { get; set; }
+        public GraphWindow ParentWindow { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public CubicFunction(CubicWindow parent, float a, float b, float c)
+        public SquareFunction(GraphWindow parent, float a, float b, float c)
         {
             ParentWindow = parent;
             A = a;
