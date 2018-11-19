@@ -10,8 +10,8 @@ namespace Graph
     class Program
     {
         static void Main(string[] args)
-        {
-            var squareFunction = new CubicWindow(800, 800, "Cubic", Color.White, Color.Black, 30, 0.5f, 0, 0);
+        { 
+            var squareFunction = new SquareWindow(800, 800, "Cubic", Color.White, Color.Black, 30, 0.5f, 10, 0);
 
             squareFunction.Refresh();
 
@@ -19,10 +19,13 @@ namespace Graph
             {
                 squareFunction.Refresh();
 
-                Console.Clear();
+                Console.CursorVisible = false;
+                Console.SetCursorPosition(0, 0);
                 Console.WriteLine("A:{0:0.00} B:{1:0.00} C:{2:0.00}",
                     squareFunction.Function.A, squareFunction.Function.B, squareFunction.Function.C);
                 Console.WriteLine("Delta:{0:0.00}", squareFunction.Function.Delta);
+
+                squareFunction.Function.B -= 0.01f;
 
                 System.Threading.Thread.Sleep(10);
 

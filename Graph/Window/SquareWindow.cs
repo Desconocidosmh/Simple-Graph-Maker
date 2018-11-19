@@ -3,7 +3,7 @@ using Graph.Drawables;
 
 namespace Graph.Window
 {
-    public class CubicWindow : GraphWindow
+    public class SquareWindow : GraphWindow
     {
         #region Properties
 
@@ -13,7 +13,7 @@ namespace Graph.Window
 
         #region Constructors
 
-        public CubicWindow(uint width, uint heigth, string name, Color backgroundColor,
+        public SquareWindow(uint width, uint heigth, string name, Color backgroundColor,
             Color coordinateSystemColor, int initialScale, float a, float b, float c)
             : base(width, heigth, name, backgroundColor, coordinateSystemColor, initialScale)
         {

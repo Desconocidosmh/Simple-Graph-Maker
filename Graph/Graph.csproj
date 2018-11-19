@@ -94,7 +94,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Window\BaseWindow.cs" />
-    <Compile Include="Window\CubicWindow.cs" />
+    <Compile Include="Window\SquareWindow.cs" />
     <Compile Include="Window\GraphWindow.cs" />
     <Compile Include="Window\VectorWindow.cs" />
   </ItemGroup>

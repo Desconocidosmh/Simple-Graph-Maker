@@ -17,7 +17,7 @@ namespace Graph.Drawables
 
         public float Delta => (float)Math.Pow(B, 2) - 4 * A * C;
 
-        public Color Color { get; set; }
+        public Color Color { get; private set; }
 
         public GraphWindow ParentWindow { get; set; }
 
@@ -32,6 +32,7 @@ namespace Graph.Drawables
             B = b;
             C = c;
             Color = ParentWindow.CoordinateSystem.Color;
+            parent.CoordinateSystem.OnChange += (s, e) => DeriveFromCoordinateSystem();
         }
 
         #endregion
@@ -56,6 +57,9 @@ namespace Graph.Drawables
 
             target.Draw(vertexes.ToArray(), PrimitiveType.LinesStrip);
         }
+
+        public void DeriveFromCoordinateSystem() =>
+            Color = ParentWindow.CoordinateSystem.Color;
 
         public float Calculate(float x) =>
             -(A * (float)Math.Pow(x, 2) + B * x + C); // We put '-' here, beacuse Y axis is flipped in SFML liblary
