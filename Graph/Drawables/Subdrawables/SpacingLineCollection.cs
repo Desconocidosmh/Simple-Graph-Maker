@@ -16,15 +16,17 @@ namespace Graph.Drawables.Subdrawables
             float spacing = parentWindow.CoordinateSystem.Spacing;
             float scale = parentWindow.CoordinateSystem.Scale;
 
+            var font = new Font(@"Resources\Fonts\Roboto-Medium.ttf");
+
             for (float i = spacing; i < scale; i += spacing)
             {
                 // Draw spacing lines on vertical line for both sides
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, i), size, Orientation.Vertical));
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, -i), size, Orientation.Vertical));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, i), size, Orientation.Vertical, font));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, -i), size, Orientation.Vertical, font));
 
                 // Add spacing lines on horizontal line for both sides
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(i, 0), size, Orientation.Horizontal));
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(-i, 0), size, Orientation.Horizontal));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(i, 0), size, Orientation.Horizontal, font));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(-i, 0), size, Orientation.Horizontal, font));
             }
 
             lines = localLines.ToArray();

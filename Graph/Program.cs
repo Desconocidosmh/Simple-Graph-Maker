@@ -11,7 +11,7 @@ namespace Graph
     {
         static void Main(string[] args)
         { 
-            var squareFunction = new SquareWindow(800, 800, "Cubic", Color.White, Color.Black, 30, 0.5f, 10, 0);
+            var squareFunction = new SquareWindow(1000, 1000, "Cubic", Color.White, Color.Black, 10, .1f, 0, 0);
 
             squareFunction.Refresh();
 
@@ -25,9 +25,10 @@ namespace Graph
                     squareFunction.Function.A, squareFunction.Function.B, squareFunction.Function.C);
                 Console.WriteLine("Delta:{0:0.00}", squareFunction.Function.Delta);
 
-                squareFunction.Function.B -= 0.01f;
+                squareFunction.CoordinateSystem.Spacing += 0.1f;
+                squareFunction.CoordinateSystem.Scale += 1;
 
-                System.Threading.Thread.Sleep(10);
+                System.Threading.Thread.Sleep(1000);
 
             }
         }

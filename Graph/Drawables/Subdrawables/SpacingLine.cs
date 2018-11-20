@@ -8,6 +8,8 @@ namespace Graph.Drawables.Subdrawables
 
     public class SpacingLine : Drawable
     {
+        private const uint DEFAULT_FONT_SIZE = 20;
+
         #region Properties
 
         /// <summary>
@@ -31,6 +33,16 @@ namespace Graph.Drawables.Subdrawables
         public float Size { get; }
 
         /// <summary>
+        /// Size of the number's font
+        /// </summary>
+        public uint FontSize { get; set; }
+
+        /// <summary>
+        /// Font of the numbers
+        /// </summary>
+        public Font Font { get; set; }
+
+        /// <summary>
         /// Color of this SpacingLine
         /// </summary>
         public Color Color { get; }
@@ -39,12 +51,14 @@ namespace Graph.Drawables.Subdrawables
 
         #region Constructors
 
-        public SpacingLine(GraphWindow parentWindow, Vector2f position, float size, Orientation orientation)
+        public SpacingLine(GraphWindow parentWindow, Vector2f position, float size, Orientation orientation, Font font)
         {
             ParentWindow = parentWindow;
             Position = position;
             Size = size;
             Orientation = orientation;
+            FontSize = DEFAULT_FONT_SIZE;
+            Font = font;
             Color = ParentWindow.CoordinateSystem.Color;
         }
 
@@ -56,18 +70,29 @@ namespace Graph.Drawables.Subdrawables
         {
             Vector2f start;
             Vector2f end;
+            Vector2f textPosition;
+            Text text;
 
             if (Orientation == Orientation.Horizontal)
             {
                 start = new Vector2f(Position.X, Position.Y - Size / 2);
                 end = new Vector2f(Position.X, Position.Y + Size / 2);
-                
+                textPosition = new Vector2f(Position.X, Position.Y + 0.25f);
+                text = new Text(Position.X.ToString("0.0"), Font, DEFAULT_FONT_SIZE);
             }
             else
             {
                 start = new Vector2f(Position.X - Size / 2, Position.Y);
                 end = new Vector2f(Position.X + Size / 2, Position.Y);
+                textPosition = new Vector2f(Position.X + 0.25f, Position.Y);
+                text = new Text((-Position.Y).ToString("0.0"), Font, DEFAULT_FONT_SIZE);
             }
+
+            float scale = (ParentWindow.CoordinateSystem.Spacing / ParentWindow.CoordinateSystem.Scale) * 1.5f; // It's temporary solution until I find a better one 
+
+            text.Position = ParentWindow.ToWindowCoords(textPosition);
+            text.Color = Color;
+            text.Scale = new Vector2f(scale, scale);
 
             target.Draw(new Vertex[]
             {
@@ -75,6 +100,7 @@ namespace Graph.Drawables.Subdrawables
                     new Vertex(ParentWindow.ToWindowCoords(end), Color)
             }, PrimitiveType.Lines);
 
+            target.Draw(text);
         }
 
         #endregion
