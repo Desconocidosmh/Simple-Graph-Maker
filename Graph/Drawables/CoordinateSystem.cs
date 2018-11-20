@@ -43,7 +43,11 @@ namespace Graph.Drawables
             {
                 if (value != scale)
                 {
-                    scale = value;
+                    if (value < 1)
+                        scale = 1;
+                    else
+                        scale = value;
+
                     OnChange.Invoke(this, EventArgs.Empty);
                 }
             }
@@ -77,7 +81,11 @@ namespace Graph.Drawables
             {
                 if (value != spacing)
                 {
-                    spacing = value;
+                    if (value <= 0)
+                        spacing = float.MaxValue;
+                    else
+                        spacing = value;
+
                     OnChange.Invoke(this, EventArgs.Empty);
                 }
             }

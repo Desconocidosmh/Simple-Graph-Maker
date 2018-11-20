@@ -21,12 +21,12 @@ namespace Graph.Drawables.Subdrawables
             for (float i = spacing; i < scale; i += spacing)
             {
                 // Draw spacing lines on vertical line for both sides
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, i), size, Orientation.Vertical, font));
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, -i), size, Orientation.Vertical, font));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, i), size, Orientation.Horizontal, font));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(0, -i), size, Orientation.Horizontal, font));
 
                 // Add spacing lines on horizontal line for both sides
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(i, 0), size, Orientation.Horizontal, font));
-                localLines.Add(new SpacingLine(parentWindow, new Vector2f(-i, 0), size, Orientation.Horizontal, font));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(i, 0), size, Orientation.Vertical, font));
+                localLines.Add(new SpacingLine(parentWindow, new Vector2f(-i, 0), size, Orientation.Vertical, font));
             }
 
             lines = localLines.ToArray();

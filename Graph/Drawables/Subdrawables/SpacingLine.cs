@@ -4,7 +4,7 @@ using Graph.Window;
 
 namespace Graph.Drawables.Subdrawables
 {
-    public enum Orientation { Vertical, Horizontal }
+    public enum Orientation { Horizontal, Vertical }
 
     public class SpacingLine : Drawable
     {
@@ -70,34 +70,37 @@ namespace Graph.Drawables.Subdrawables
         {
             Vector2f start;
             Vector2f end;
-            Vector2f textPosition;
             Text text;
 
-            if (Orientation == Orientation.Horizontal)
+            float scale = ParentWindow.CoordinateSystem.Spacing / ParentWindow.CoordinateSystem.Scale * 1.5f; // It's temporary solution until I find a better one
+
+            if (Orientation == Orientation.Vertical)
             {
-                start = new Vector2f(Position.X, Position.Y - Size / 2);
-                end = new Vector2f(Position.X, Position.Y + Size / 2);
-                textPosition = new Vector2f(Position.X, Position.Y + 0.25f);
-                text = new Text(Position.X.ToString("0.0"), Font, DEFAULT_FONT_SIZE);
+                start = ParentWindow.ToWindowCoords(Position) - new Vector2f(0, Size);
+                end = ParentWindow.ToWindowCoords(Position) + new Vector2f(0, Size);
+                text = new Text(Position.X.ToString("0.0"), Font, DEFAULT_FONT_SIZE)
+                {
+                    Position = ParentWindow.ToWindowCoords(Position) + new Vector2f(-1.5f, 2)
+                };
             }
             else
             {
-                start = new Vector2f(Position.X - Size / 2, Position.Y);
-                end = new Vector2f(Position.X + Size / 2, Position.Y);
-                textPosition = new Vector2f(Position.X + 0.25f, Position.Y);
-                text = new Text((-Position.Y).ToString("0.0"), Font, DEFAULT_FONT_SIZE);
+                start = ParentWindow.ToWindowCoords(Position) - new Vector2f(Size, 0);
+                end = ParentWindow.ToWindowCoords(Position) + new Vector2f(Size, 0);
+                text = new Text((-Position.Y).ToString("0.0"), Font, DEFAULT_FONT_SIZE)
+                {
+                    Position = ParentWindow.ToWindowCoords(Position) + new Vector2f(-5.5f, 0)
+                };
             }
 
-            float scale = (ParentWindow.CoordinateSystem.Spacing / ParentWindow.CoordinateSystem.Scale) * 1.5f; // It's temporary solution until I find a better one 
-
-            text.Position = ParentWindow.ToWindowCoords(textPosition);
+            text.Origin = new Vector2f(text.GetLocalBounds().Left / 2, text.GetLocalBounds().Height / 2);
             text.Color = Color;
-            text.Scale = new Vector2f(scale, scale);
+            text.Scale = new Vector2f(0.15f, 0.15f);
 
             target.Draw(new Vertex[]
             {
-                    new Vertex(ParentWindow.ToWindowCoords(start), Color),
-                    new Vertex(ParentWindow.ToWindowCoords(end), Color)
+                    new Vertex(start, Color),
+                    new Vertex(end, Color)
             }, PrimitiveType.Lines);
 
             target.Draw(text);
