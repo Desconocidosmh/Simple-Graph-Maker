@@ -9,7 +9,7 @@ namespace Graph.Drawables
     /// <summary>
     /// Resebles Vector, which can be drawn and used for calculations
     /// </summary>
-    public class Vector : Drawable
+    public class Vector : IElement, Drawable
     {
         #region Properties
 
@@ -64,29 +64,42 @@ namespace Graph.Drawables
                 }
             }
         }
+
         private Color color;
 
-        public GraphWindow ParentWindow { get; }
-
         private readonly Arrow Arrow;
+
+        public GraphWindow ParentWindow
+        {
+            get => parentWindow;
+            set
+            {
+                if (parentWindow != null)
+                    parentWindow.CoordinateSystem.OnChange -= (s, e) => DeriveFromCoordinateSystem();
+
+                parentWindow = value;
+
+                if (parentWindow != null)
+                    parentWindow.CoordinateSystem.OnChange += (s, e) => DeriveFromCoordinateSystem();
+            }
+        }
+        private GraphWindow parentWindow;
 
         #endregion
 
         #region Constructors
 
-        public Vector(GraphWindow parentWindow, Vector2f position) : this(parentWindow, position, Color.Black) { }
-        public Vector(GraphWindow parentWindow, Vector2f position, Color color)
+        public Vector(Vector2f position) : this(position, Color.Black) { }
+        public Vector(Vector2f position, Color color)
         {
-            ParentWindow = parentWindow;
             this.position = position;
             Color = color;
             ArrowSize = 1;
             Arrow = new Arrow(this);
-            parentWindow.CoordinateSystem.OnChange += (s, e) => 
-                Color = parentWindow.CoordinateSystem.Color;
+            Color = color;
         }
-        public Vector(GraphWindow parentWindow, float x, float y) : this(parentWindow, new Vector2f(x, y)) { }
-        public Vector(GraphWindow parentWindow, float x, float y, Color color) : this(parentWindow, new Vector2f(x, y), color) { }
+        public Vector(float x, float y) : this(new Vector2f(x, y)) { }
+        public Vector(float x, float y, Color color) : this(new Vector2f(x, y), color) { }
 
         #endregion
 
@@ -97,8 +110,14 @@ namespace Graph.Drawables
             target.Draw(new Vertex[]
             {
                 new Vertex(new Vector2f(), Color),
-                new Vertex(ParentWindow.ToWindowCoords(Position), Color)
+                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(Position.X, -Position.Y)), Color)
             }, PrimitiveType.LinesStrip);
+        }
+
+        public void DeriveFromCoordinateSystem()
+        {
+            if (ParentWindow != null)
+                Color = ParentWindow.CoordinateSystem.Color;
         }
 
         public void Draw(RenderTarget target, RenderStates states)

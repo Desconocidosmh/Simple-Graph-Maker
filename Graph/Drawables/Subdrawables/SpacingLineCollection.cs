@@ -7,6 +7,8 @@ namespace Graph.Drawables.Subdrawables
 {
     public class SpacingLineCollection : Drawable
     {
+        private static Font font = new Font(@"Resources\Fonts\Roboto-Medium.ttf");
+
         private readonly SpacingLine[] lines;
 
         public SpacingLineCollection(GraphWindow parentWindow, float size)
@@ -15,8 +17,6 @@ namespace Graph.Drawables.Subdrawables
 
             float spacing = parentWindow.CoordinateSystem.Spacing;
             float scale = parentWindow.CoordinateSystem.Scale;
-
-            var font = new Font(@"Resources\Fonts\Roboto-Medium.ttf");
 
             for (float i = spacing; i < scale; i += spacing)
             {

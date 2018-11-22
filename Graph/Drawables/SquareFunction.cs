@@ -7,7 +7,7 @@ using SFML.Graphics;
 
 namespace Graph.Drawables
 {
-    public class SquareFunction : Drawable
+    public class SquareFunction : IElement, Drawable
     {
         #region Properties
 
@@ -18,21 +18,32 @@ namespace Graph.Drawables
         public float Delta => (float)Math.Pow(B, 2) - 4 * A * C;
 
         public Color Color { get; private set; }
+        public GraphWindow ParentWindow
+        {
+            get => parentWindow;
+            set
+            {
+                if (parentWindow != null)
+                    parentWindow.CoordinateSystem.OnChange -= (s, e) => DeriveFromCoordinateSystem();
 
-        public GraphWindow ParentWindow { get; set; }
+                parentWindow = value;
+
+                if (parentWindow != null)
+                    parentWindow.CoordinateSystem.OnChange += (s, e) => DeriveFromCoordinateSystem();
+            }
+        }
+        private GraphWindow parentWindow;
 
         #endregion
 
         #region Constructors
 
-        public SquareFunction(GraphWindow parent, float a, float b, float c)
+        public SquareFunction(float a, float b, float c)
         {
-            ParentWindow = parent;
             A = a;
             B = b;
             C = c;
-            Color = ParentWindow.CoordinateSystem.Color;
-            parent.CoordinateSystem.OnChange += (s, e) => DeriveFromCoordinateSystem();
+            Color = Color.Black;
         }
 
         #endregion
@@ -58,11 +69,14 @@ namespace Graph.Drawables
             target.Draw(vertexes.ToArray(), PrimitiveType.LinesStrip);
         }
 
-        public void DeriveFromCoordinateSystem() =>
-            Color = ParentWindow.CoordinateSystem.Color;
+        public void DeriveFromCoordinateSystem()
+        {
+            if (ParentWindow != null)
+                Color = ParentWindow.CoordinateSystem.Color;
+        }
 
         public float Calculate(float x) =>
-            -(A * (float)Math.Pow(x, 2) + B * x + C); // We put '-' here, beacuse Y axis is flipped in SFML liblary
+                -(A * (float)Math.Pow(x, 2) + B * x + C); // We put '-' here, beacuse Y axis is flipped in SFML liblary
 
         #endregion
     }

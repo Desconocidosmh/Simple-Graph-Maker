@@ -72,15 +72,13 @@ namespace Graph.Drawables.Subdrawables
             Vector2f end;
             Text text;
 
-            float scale = ParentWindow.CoordinateSystem.Spacing / ParentWindow.CoordinateSystem.Scale * 1.5f; // It's temporary solution until I find a better one
-
             if (Orientation == Orientation.Vertical)
             {
                 start = ParentWindow.ToWindowCoords(Position) - new Vector2f(0, Size);
                 end = ParentWindow.ToWindowCoords(Position) + new Vector2f(0, Size);
                 text = new Text(Position.X.ToString("0.0"), Font, DEFAULT_FONT_SIZE)
                 {
-                    Position = ParentWindow.ToWindowCoords(Position) + new Vector2f(-1.5f, 2)
+                    Position = ParentWindow.ToWindowCoords(Position) + new Vector2f(-1.5f, 1.5f)
                 };
             }
             else
@@ -89,7 +87,7 @@ namespace Graph.Drawables.Subdrawables
                 end = ParentWindow.ToWindowCoords(Position) + new Vector2f(Size, 0);
                 text = new Text((-Position.Y).ToString("0.0"), Font, DEFAULT_FONT_SIZE)
                 {
-                    Position = ParentWindow.ToWindowCoords(Position) + new Vector2f(-5.5f, 0)
+                    Position = ParentWindow.ToWindowCoords(Position) + new Vector2f(-6f, 0)
                 };
             }
 
@@ -104,6 +102,7 @@ namespace Graph.Drawables.Subdrawables
             }, PrimitiveType.Lines);
 
             target.Draw(text);
+            text.Dispose();
         }
 
         #endregion
