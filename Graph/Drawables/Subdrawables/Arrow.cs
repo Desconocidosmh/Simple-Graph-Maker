@@ -56,7 +56,7 @@ namespace Graph.Drawables.Subdrawables
             var triangle = new CircleShape(Size, 3)
             {
                 Origin = new Vector2f(Size, Size),
-                Position = ParentVector.ParentWindow.ToWindowCoords(new Vector2f(Position.X, -Position.Y)),
+                Position = ParentVector.GetParentWindow().ToWindowCoords(new Vector2f(Position.X, -Position.Y)),
                 Rotation = Rotation,
                 OutlineColor = Color,
                 FillColor = Color

@@ -1,7 +1,6 @@
 ﻿using System;
 using SFML.Graphics;
 using SFML.System;
-using Graph.Window;
 using Graph.Drawables.Subdrawables;
 
 namespace Graph.Drawables
@@ -9,7 +8,7 @@ namespace Graph.Drawables
     /// <summary>
     /// Resebles Vector, which can be drawn and used for calculations
     /// </summary>
-    public class Vector : IElement, Drawable
+    public class Vector : Element, Drawable
     {
         #region Properties
 
@@ -52,10 +51,10 @@ namespace Graph.Drawables
         /// <summary>
         /// Color of the vector
         /// </summary>
-        public Color Color
+        public override Color Color
         {
             get => color;
-            private set
+            protected set
             {
                 if (color != value)
                 {
@@ -64,29 +63,9 @@ namespace Graph.Drawables
                 }
             }
         }
-
         private Color color;
 
         private readonly Arrow Arrow;
-
-        public GraphWindow ParentWindow
-        {
-            get => parentWindow;
-            set
-            {
-                if (parentWindow != null)
-                    parentWindow.CoordinateSystem.OnChange -= (s, e) => DeriveFromCoordinateSystem();
-
-                parentWindow = value;
-
-                if (parentWindow != null)
-                {
-                    DeriveFromCoordinateSystem();
-                    parentWindow.CoordinateSystem.OnChange += (s, e) => DeriveFromCoordinateSystem();
-                }
-            }
-        }
-        private GraphWindow parentWindow;
 
         #endregion
 
@@ -113,17 +92,11 @@ namespace Graph.Drawables
             target.Draw(new Vertex[]
             {
                 new Vertex(new Vector2f(), Color),
-                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(Position.X, -Position.Y)), Color)
+                new Vertex(GetParentWindow().ToWindowCoords(new Vector2f(Position.X, -Position.Y)), Color)
             }, PrimitiveType.LinesStrip);
         }
 
-        public void DeriveFromCoordinateSystem()
-        {
-            if (ParentWindow != null)
-                Color = ParentWindow.CoordinateSystem.Color;
-        }
-
-        public void Draw(RenderTarget target, RenderStates states)
+        public override void Draw(RenderTarget target, RenderStates states)
         {
             // Draw a line from Vector 0 to this Vector
             DrawVectorsLine(target);

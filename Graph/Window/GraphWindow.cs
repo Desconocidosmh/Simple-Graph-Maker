@@ -13,7 +13,7 @@ namespace Graph.Window
         /// <summary>
         /// Elements drawn on top of background
         /// </summary>
-        private readonly Dictionary<string, IElement> Elements;
+        private readonly List<Element> Elements;
 
         /// <summary>
         /// Coordinate system of this window
@@ -33,7 +33,7 @@ namespace Graph.Window
         public GraphWindow(uint width, uint heigth, string name, Color backgroundColor, Color coordinateSystemColor, int initialScale)
             : base(width, heigth, name, backgroundColor)
         {
-            Elements = new Dictionary<string, IElement>();
+            Elements = new List<Element>();
             CoordinateSystem = new CoordinateSystem(this, initialScale, coordinateSystemColor);
         }
 
@@ -48,7 +48,7 @@ namespace Graph.Window
         {
             foreach (var element in Elements)
             {
-                target.Draw(element.Value);
+                target.Draw(element);
             }
         }
 
@@ -57,59 +57,43 @@ namespace Graph.Window
         /// </summary>
         /// <param name="name">Name which can be later used to access this element</param>
         /// <param name="element">Element which will be added</param>
-        public void AddElement(string name, IElement element)
+        public void AddElement(Element element)
         {
-            element.ParentWindow = this;
+            element.SetParentWindow(this);
 
-            Elements.Add(name, element);
+            Elements.Add(element);
         }
 
         /// <summary>
-        /// Gets element from the dictionary of elements
+        /// Gets all elements from the list of elements
         /// </summary>
-        /// <param name="name">Name of the element which will be returned</param>
-        /// <returns>Element with specified name. Null if not found</returns>
-        public IElement GetElement(string name)
-        {
-            try
-            {
-                return Elements[name];
-            }
-            catch
-            {
-                return null;
-            }
-        }
+        /// <returns>All elements of this window as one dimensional array</returns>
+        public Element[] GetElements(string name) =>
+            Elements.ToArray();
 
         /// <summary>
-        /// Removes element from the dictionary of elements
+        /// Checks if this window is a parent of specified element
         /// </summary>
-        /// <param name="name">Name of the element which will be removed</param>
+        /// <returns>Bool value which represents if an element is or isn't this window's child </returns>
+        public bool IsParentOf(Element child) =>
+            child.GetParentWindow() == this;
+
+        /// <summary>
+        /// Finds and removes element specified as the argument from the list of elements
+        /// </summary>
+        /// <param name="element">Element which will be removed</param>
         /// <returns>True if successful; False if failed</returns>
-        public bool RemoveElement(string name)
+        public bool RemoveElement(Element element)
         {
             try
             {
-                var element = Elements[name];
-                element.ParentWindow = null;
-                Elements.Remove(name);
+                Elements.Remove(element);
                 return true;
             }
             catch
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// Get name of every element
-        /// </summary>
-        /// <returns>Name of every element as one dimensional array</returns>
-        public string[] GetAllElementsNames()
-        {
-            string[] result = new string[Elements.Count];
-            Elements.Keys.CopyTo(result, 0);
-            return result;
         }
 
         /// <summary>

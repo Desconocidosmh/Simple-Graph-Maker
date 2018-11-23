@@ -82,7 +82,7 @@
   <ItemGroup>
     <Compile Include="Attributes\MenuItemAttribute.cs" />
     <Compile Include="Drawables\CoordinateSystem.cs" />
-    <Compile Include="Drawables\IElement.cs" />
+    <Compile Include="Drawables\Element.cs" />
     <Compile Include="Drawables\SquareFunction.cs" />
     <Compile Include="Drawables\Subdrawables\Arrow.cs" />
     <Compile Include="Drawables\Subdrawables\SpacingLine.cs" />

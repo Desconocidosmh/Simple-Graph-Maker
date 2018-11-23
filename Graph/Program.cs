@@ -11,24 +11,21 @@ namespace Graph
     {
         static void Main(string[] args)
         {
-            var squareFunction = new GraphWindow(1000, 1000, "Square", Color.White, Color.Black, 10);
+            var window1 = new GraphWindow(1000, 1000, "One", Color.White, Color.Black, 10);
+            var window2 = new GraphWindow(1000, 1000, "Two", Color.Blue, Color.Yellow, 15);
 
             var function1 = new SquareFunction(0.1f, 0, 0);
             var function2 = new SquareFunction(-0.2f, -0.5f, 3);
             var vector1 = new Vector(4, -3);
 
-            squareFunction.AddElement("oneFunc", function1);
-            squareFunction.AddElement("twoFunc", function2);
-            squareFunction.AddElement("oneVector", vector1);
+            window1.AddElement(function1);
+            window1.AddElement(function2);
+            window1.AddElement(vector1);
 
-            squareFunction.CoordinateSystem.Color = Color.Green;
+            window1.CoordinateSystem.Color = Color.Green;
 
-            foreach (var item in squareFunction.GetAllElementsNames())
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(function1.Color);
+            window2.AddElement(function1);
+            window2.AddElement(function2);
 
             float radiants = 0;
 
@@ -46,7 +43,8 @@ namespace Graph
 
                 vector1.Position = new Vector2f(X, Y);
 
-                squareFunction.Refresh();
+                window1.Refresh();
+                window2.Refresh();
 
                 Thread.Sleep(50);
             }
