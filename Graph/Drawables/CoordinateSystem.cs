@@ -110,7 +110,7 @@ namespace Graph.Drawables
         private Color color;
 
         /// <summary>
-        /// Has this coordinate system changed since last redraw
+        /// Has this coordinate system changed since last redraw?
         /// </summary>
         public bool RequiresRedraw { get; private set; }
 

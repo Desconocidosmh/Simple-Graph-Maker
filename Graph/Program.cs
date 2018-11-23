@@ -21,7 +21,12 @@ namespace Graph
             squareFunction.AddElement("twoFunc", function2);
             squareFunction.AddElement("oneVector", vector1);
 
-            squareFunction.CoordinateSystem.Color = Color.Black;
+            squareFunction.CoordinateSystem.Color = Color.Green;
+
+            foreach (var item in squareFunction.GetAllElementsNames())
+            {
+                Console.WriteLine(item);
+            }
 
             Console.WriteLine(function1.Color);
 

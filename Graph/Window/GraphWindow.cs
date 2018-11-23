@@ -1,5 +1,4 @@
-﻿using System;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using Graph.MathUtils;
 using Graph.Drawables;
@@ -14,7 +13,7 @@ namespace Graph.Window
         /// <summary>
         /// Elements drawn on top of background
         /// </summary>
-        public Dictionary<string, IElement> Elements { get; set; }
+        private readonly Dictionary<string, IElement> Elements;
 
         /// <summary>
         /// Coordinate system of this window
@@ -96,11 +95,21 @@ namespace Graph.Window
                 Elements.Remove(name);
                 return true;
             }
-            catch(Exception ex)
+            catch
             {
-                Console.WriteLine(this + ": " + ex.Message);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Get name of every element
+        /// </summary>
+        /// <returns>Name of every element as one dimensional array</returns>
+        public string[] GetAllElementsNames()
+        {
+            string[] result = new string[Elements.Count];
+            Elements.Keys.CopyTo(result, 0);
+            return result;
         }
 
         /// <summary>

@@ -80,7 +80,10 @@ namespace Graph.Drawables
                 parentWindow = value;
 
                 if (parentWindow != null)
+                {
+                    DeriveFromCoordinateSystem();
                     parentWindow.CoordinateSystem.OnChange += (s, e) => DeriveFromCoordinateSystem();
+                }
             }
         }
         private GraphWindow parentWindow;
