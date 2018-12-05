@@ -13,7 +13,7 @@ namespace Graph
         {
             var window1 = new GraphWindow(1000, 1000, "One", Color.White, Color.Black, 10);
 
-            var sineWave = new SineWave(1, 0);
+            var sineWave = new SineWave(1.5f, 2);
 
             window1.AddElement(sineWave);
 
@@ -41,8 +41,6 @@ namespace Graph
             while (true)
             {
                 Console.Clear();
-
-                sineWave.Density += 0.001f;
 
                 //Console.WriteLine("A:{0:0.00} B:{1:0.00} C:{2:0.00}",
                 //    function1.A, function1.B, function1.C);

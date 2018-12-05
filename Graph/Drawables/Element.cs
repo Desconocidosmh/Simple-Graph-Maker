@@ -15,10 +15,9 @@ namespace Graph.Drawables
 
         #region Methods
 
-        public virtual GraphWindow GetParentWindow()
-        {
-            return parentWindow;
-        }
+        public virtual GraphWindow GetParentWindow() =>
+            parentWindow;
+        
         public virtual void SetParentWindow(GraphWindow value)
         {
             if (parentWindow != null)
