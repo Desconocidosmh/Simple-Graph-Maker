@@ -85,7 +85,7 @@ namespace Graph.Drawables.Subdrawables
             {
                 start = ParentWindow.ToWindowCoords(Position) - new Vector2f(Size, 0);
                 end = ParentWindow.ToWindowCoords(Position) + new Vector2f(Size, 0);
-                text = new Text((-Position.Y).ToString("0.0"), Font, DEFAULT_FONT_SIZE)
+                text = new Text((Position.Y).ToString("0.0"), Font, DEFAULT_FONT_SIZE)
                 {
                     Position = ParentWindow.ToWindowCoords(Position) + new Vector2f(-6f, 0)
                 };

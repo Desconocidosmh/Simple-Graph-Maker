@@ -1,31 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using Graph.MathUtils;
-using SFML.System;
 using SFML.Graphics;
+using SFML.System;
+using Graph.MathUtils;
 
 namespace Graph.Drawables
 {
-    public class SquareFunction : Element, Drawable
+    public class Hyperbole : Element
     {
         #region Properties
 
         public float A { get; set; }
-        public float B { get; set; }
-        public float C { get; set; }
-
-        public float Delta => (float)Math.Pow(B, 2) - 4 * A * C;
 
         #endregion
 
-        #region Constructors
+        #region Constructor
 
-        public SquareFunction(float a, float b, float c)
-        {
+        public Hyperbole(float a) =>
             A = a;
-            B = b;
-            C = c;
-        }
 
         #endregion
 
@@ -36,8 +28,13 @@ namespace Graph.Drawables
         /// </summary>
         /// <param name="x">X parameter to calculate Y</param>
         /// <returns>Value of Y</returns>
-        public float Calculate(float x) =>
-                A * (float)Math.Pow(x, 2) + B * x + C;
+        public float Calculate(float x)
+        {
+            if (x == 0)
+                throw new ArgumentException("Argument cannot be 0 - ", nameof(x));
+
+            return A / x;
+        }
 
         public override void Draw(RenderTarget target, RenderStates states)
         {
@@ -49,6 +46,13 @@ namespace Graph.Drawables
             {
                 float xPos = Interpolation.Map(
                     i, 0, xPixels, -GetParentWindow().CoordinateSystem.Scale, GetParentWindow().CoordinateSystem.Scale);
+
+                if (xPos == 0)
+                {
+                    target.Draw(vertexes.ToArray(), PrimitiveType.LinesStrip);
+                    vertexes.Clear();
+                    continue;
+                }
 
                 vertexes.Add(new Vertex(
                     GetParentWindow().ToWindowCoords(

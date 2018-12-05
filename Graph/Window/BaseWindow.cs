@@ -49,7 +49,7 @@ namespace Graph.Window
 
         #region Methods
 
-        protected virtual void DrawBackground(RenderTarget target) { }
+        protected abstract void DrawBackground(RenderTarget target);
 
         protected abstract void DrawElements(RenderTarget target);
 

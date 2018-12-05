@@ -104,7 +104,7 @@ namespace Graph.Window
         public Vector2f ToWindowCoords(Vector2f pos)
         {
             float X = Interpolation.Map(pos.X, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2, -Window.GetView().Size.X, Window.GetView().Size.X);
-            float Y = Interpolation.Map(pos.Y, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2, -Window.GetView().Size.Y, Window.GetView().Size.Y);
+            float Y = -Interpolation.Map(pos.Y, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2, -Window.GetView().Size.Y, Window.GetView().Size.Y);
 
             return new Vector2f(X, Y);
         }
@@ -117,7 +117,7 @@ namespace Graph.Window
         public Vector2f ToGraphCoords(Vector2f pos)
         {
             float X = Interpolation.Map(pos.X, -Window.GetView().Size.X, Window.GetView().Size.X, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2);
-            float Y = Interpolation.Map(pos.Y, -Window.GetView().Size.Y, Window.GetView().Size.Y, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2);
+            float Y = -Interpolation.Map(pos.Y, -Window.GetView().Size.Y, Window.GetView().Size.Y, -CoordinateSystem.Scale * 2, CoordinateSystem.Scale * 2);
 
             return new Vector2f(X, Y);
         }

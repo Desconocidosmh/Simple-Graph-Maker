@@ -157,7 +157,7 @@ namespace Graph.Drawables
         public void Draw(RenderTarget target, RenderStates states)
         {
             DrawMainLines(target);
-            DrawSpacingLines(target, 0.5f);
+            DrawSpacingLines(target, SpacingLinesSize);
 
             RequiresRedraw = false;
         }

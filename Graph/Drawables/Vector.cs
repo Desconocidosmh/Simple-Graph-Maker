@@ -92,7 +92,7 @@ namespace Graph.Drawables
             target.Draw(new Vertex[]
             {
                 new Vertex(new Vector2f(), Color),
-                new Vertex(GetParentWindow().ToWindowCoords(new Vector2f(Position.X, -Position.Y)), Color)
+                new Vertex(GetParentWindow().ToWindowCoords(new Vector2f(Position.X, Position.Y)), Color)
             }, PrimitiveType.LinesStrip);
         }
 
