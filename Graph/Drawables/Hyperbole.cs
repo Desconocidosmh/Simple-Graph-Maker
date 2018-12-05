@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
 using Graph.MathUtils;
+using Graph.System;
 
 namespace Graph.Drawables
 {
-    public class Hyperbole : Element
+    public class Hyperbole : Element, ICalculate
     {
         #region Properties
 

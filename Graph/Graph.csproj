@@ -80,10 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\MenuItemAttribute.cs" />
+    <Compile Include="System\ICalculate.cs" />
+    <Compile Include="System\MenuItemAttribute.cs" />
     <Compile Include="Drawables\CoordinateSystem.cs" />
     <Compile Include="Drawables\Element.cs" />
     <Compile Include="Drawables\Hyperbole.cs" />
+    <Compile Include="Drawables\SineWave.cs" />
     <Compile Include="Drawables\SquareFunction.cs" />
     <Compile Include="Drawables\Subdrawables\Arrow.cs" />
     <Compile Include="Drawables\Subdrawables\SpacingLine.cs" />

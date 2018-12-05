@@ -13,9 +13,9 @@ namespace Graph
         {
             var window1 = new GraphWindow(1000, 1000, "One", Color.White, Color.Black, 10);
 
-            var hyperbole = new Hyperbole(2);
+            var sineWave = new SineWave(1, 0);
 
-            window1.AddElement(hyperbole);
+            window1.AddElement(sineWave);
 
             //var window2 = new GraphWindow(1000, 1000, "Two", Color.Blue, Color.Yellow, 15);
 
@@ -41,7 +41,9 @@ namespace Graph
             while (true)
             {
                 Console.Clear();
-                Console.Write("A= " + hyperbole.A.ToString("0.00"));
+
+                sineWave.Density += 0.001f;
+
                 //Console.WriteLine("A:{0:0.00} B:{1:0.00} C:{2:0.00}",
                 //    function1.A, function1.B, function1.C);
                 //Console.WriteLine("Delta:{0:0.00}", function1.Delta);

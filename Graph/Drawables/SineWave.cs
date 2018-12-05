@@ -2,30 +2,27 @@
 using System.Collections.Generic;
 using Graph.MathUtils;
 using Graph.System;
-using SFML.System;
 using SFML.Graphics;
+using SFML.System;
 
 namespace Graph.Drawables
 {
-    public class SquareFunction : Element, Drawable, ICalculate 
+    public class SineWave : Element, ICalculate
     {
         #region Properties
 
-        public float A { get; set; }
-        public float B { get; set; }
-        public float C { get; set; }
+        public float Amplitude { get; set; }
 
-        public float Delta => (float)Math.Pow(B, 2) - 4 * A * C;
+        public float Density { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public SquareFunction(float a, float b, float c)
+        public SineWave(float amplitude, float density)
         {
-            A = a;
-            B = b;
-            C = c;
+            Amplitude = amplitude;
+            Density = density;
         }
 
         #endregion
@@ -38,7 +35,7 @@ namespace Graph.Drawables
         /// <param name="x">X parameter to calculate Y</param>
         /// <returns>Value of Y</returns>
         public float Calculate(float x) =>
-                A * (float)Math.Pow(x, 2) + B * x + C;
+            (float)Math.Sin(x * Density) * Amplitude;
 
         public override void Draw(RenderTarget target, RenderStates states)
         {

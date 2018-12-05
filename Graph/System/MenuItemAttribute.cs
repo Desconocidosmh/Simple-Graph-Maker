@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Graph.Attributes
+namespace Graph.System
 {
     /// <summary>
     /// Attribute used to display property as a
