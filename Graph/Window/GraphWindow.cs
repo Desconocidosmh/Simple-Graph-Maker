@@ -44,11 +44,34 @@ namespace Graph.Window
         protected override void DrawBackground(RenderTarget target) =>
             target.Draw(CoordinateSystem);
 
-        protected override void DrawElements(RenderTarget target)
+        protected override void DrawForeground(RenderTarget target)
         {
             foreach (var element in Elements)
             {
-                target.Draw(element);
+                var vertices = new List<Vertex>();
+
+                uint xPixels = this.Resolution.X;
+
+                for (uint i = 0; i < xPixels; i++)
+                {
+                    float xPos = Interpolation.Map(
+                        i, 0, xPixels, -this.CoordinateSystem.Scale, this.CoordinateSystem.Scale);
+
+                    float yPos = element.Calculate(xPos);
+
+                    // If calculated value is NaN, start drawing next line
+                    if (yPos == float.NaN)
+                    {
+                        target.Draw(vertices.ToArray(), PrimitiveType.LinesStrip);
+                        vertices.Clear();
+                    }
+
+                    vertices.Add(new Vertex(
+                        this.ToWindowCoords(
+                            new Vector2f(xPos, yPos)), element.Color));
+                }
+
+                target.Draw(vertices.ToArray(), PrimitiveType.LinesStrip);
             }
         }
 
@@ -57,12 +80,8 @@ namespace Graph.Window
         /// </summary>
         /// <param name="name">Name which can be later used to access this element</param>
         /// <param name="element">Element which will be added</param>
-        public void AddElement(Element element)
-        {
-            element.SetParentWindow(this);
-
+        public void AddElement(Element element) =>
             Elements.Add(element);
-        }
 
         /// <summary>
         /// Gets all elements from the list of elements
@@ -70,13 +89,6 @@ namespace Graph.Window
         /// <returns>All elements of this window as one dimensional array</returns>
         public Element[] GetElements(string name) =>
             Elements.ToArray();
-
-        /// <summary>
-        /// Checks if this window is a parent of specified element
-        /// </summary>
-        /// <returns>Bool value which represents if an element is or isn't this window's child </returns>
-        public bool IsParentOf(Element child) =>
-            child.GetParentWindow() == this;
 
         /// <summary>
         /// Finds and removes element specified as the argument from the list of elements

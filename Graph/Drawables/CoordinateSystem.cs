@@ -1,5 +1,4 @@
-﻿using System;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using Graph.Window;
 using Graph.Drawables.Subdrawables;
@@ -27,8 +26,6 @@ namespace Graph.Drawables
 
         private readonly GraphWindow ParentWindow;
 
-        public event EventHandler OnChange = delegate { };
-
         /// <summary>
         /// Scale of this CoordinateSystem
         /// </summary>
@@ -47,8 +44,6 @@ namespace Graph.Drawables
                         scale = 1;
                     else
                         scale = value;
-
-                    OnChange.Invoke(this, EventArgs.Empty);
                 }
             }
         }
@@ -57,19 +52,7 @@ namespace Graph.Drawables
         /// <summary>
         /// Size of the small lines dividing coordinate system into smaller parts
         /// </summary>
-        public float SpacingLinesSize
-        {
-            get => spacingLinesSize;
-            set
-            {
-                if (value != scale)
-                {
-                    spacingLinesSize = value;
-                    OnChange.Invoke(this, EventArgs.Empty);
-                }
-            }
-        }
-        private float spacingLinesSize;
+        public float SpacingLinesSize { get; set; } = .5f;
 
         /// <summary>
         /// Spacing of this CoordinateSystem
@@ -85,8 +68,6 @@ namespace Graph.Drawables
                         spacing = float.MaxValue;
                     else
                         spacing = value;
-
-                    OnChange.Invoke(this, EventArgs.Empty);
                 }
             }
         }
@@ -95,19 +76,7 @@ namespace Graph.Drawables
         /// <summary>
         /// Color of this CoordinateSystem
         /// </summary>
-        public Color Color
-        {
-            get => color;
-            set
-            {
-                if (value != color)
-                {
-                    color = value;
-                    OnChange.Invoke(this, EventArgs.Empty);
-                }
-            }
-        }
-        private Color color;
+        public Color Color { get; set; }
 
         /// <summary>
         /// Has this coordinate system changed since last redraw?
@@ -146,8 +115,6 @@ namespace Graph.Drawables
             Scale = scale;
             Spacing = spacing;
             Color = color;
-
-            OnChange += (s, e) => RequiresRedraw = true;
         }
 
         #endregion

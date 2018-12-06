@@ -51,14 +51,14 @@ namespace Graph.Window
 
         protected abstract void DrawBackground(RenderTarget target);
 
-        protected abstract void DrawElements(RenderTarget target);
+        protected abstract void DrawForeground(RenderTarget target);
 
         public void Refresh()
         {
             Window.Clear(BackgroundColor);
 
             DrawBackground(Window);
-            DrawElements(Window);
+            DrawForeground(Window);
 
             Window.Display();
         }

@@ -1,46 +1,24 @@
 ﻿using SFML.Graphics;
-using Graph.Window;
+using Graph.System;
 
 namespace Graph.Drawables
 {
-    public abstract class Element : Drawable
+    public abstract class Element : ICalculate
     {
         #region Properies
 
-        public virtual Color Color { get; protected set; }
-
-        private GraphWindow parentWindow;
+        public virtual Color Color { get; set; } = Color.Black;
 
         #endregion
 
         #region Methods
 
-        public virtual GraphWindow GetParentWindow() =>
-            parentWindow;
-        
-        public virtual void SetParentWindow(GraphWindow value)
-        {
-            if (parentWindow != null)
-            {
-                parentWindow.CoordinateSystem.OnChange -= (s, e) => DeriveFromCoordinateSystem(parentWindow.CoordinateSystem);
-                parentWindow.RemoveElement(this);
-            }
-
-            parentWindow = value;
-
-            if (parentWindow != null)
-            {
-                DeriveFromCoordinateSystem(parentWindow.CoordinateSystem);
-                parentWindow.CoordinateSystem.OnChange += (s, e) => DeriveFromCoordinateSystem(parentWindow.CoordinateSystem);
-            }
-        }
-
-        protected virtual void DeriveFromCoordinateSystem(CoordinateSystem coordinateSystem)
-        {
-            Color = coordinateSystem.Color;
-        }
-
-        public abstract void Draw(RenderTarget target, RenderStates states);
+        /// <summary>
+        /// Calculate Y from X
+        /// </summary>
+        /// <param name="x">X parameter to calculate Y</param>
+        /// <returns>Value of Y</returns>
+        public abstract float Calculate(float x);
 
         #endregion
     }
