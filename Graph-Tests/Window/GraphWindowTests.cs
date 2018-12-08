@@ -57,7 +57,6 @@ namespace Graph.Window.Tests
             var action = new Func<bool>(() => window.RemoveElement(sine));
 
             Assert.IsFalse(action.Invoke());
-
         }
     }
 }

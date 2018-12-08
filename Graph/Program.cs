@@ -10,9 +10,6 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            float y = 0;
-            float x = 9 / y;
-
             var window = new GraphWindow(1000, 1000, "Window", new Color(252, 251, 237), Color.Black, 10);
 
             var hyper = new Hyperbole(1)

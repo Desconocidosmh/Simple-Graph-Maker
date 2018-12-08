@@ -15,7 +15,6 @@ namespace Graph_Tests.Elements
             result = hyperbole.Calculate(0);
 
             Assert.IsTrue(float.IsInfinity(result));
-
         }
     }
 }

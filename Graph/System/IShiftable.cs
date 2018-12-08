@@ -1,5 +1,4 @@
-﻿
-namespace Graph.System
+﻿namespace Graph.System
 {
     public interface IShiftable
     {

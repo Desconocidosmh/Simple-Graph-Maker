@@ -1,5 +1,4 @@
-﻿
-namespace Graph.MathUtils
+﻿namespace Graph.MathUtils
 {
     public static class Transformation
     {

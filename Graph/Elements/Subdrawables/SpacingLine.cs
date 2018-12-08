@@ -46,7 +46,6 @@ namespace Graph.Elements.Subdrawables
 
         private Orientation Orientation { get; }
 
-
         public SpacingLine(GraphWindow parentWindow, Vector2f position, float size, Orientation orientation, Font font)
         {
             ParentWindow = parentWindow;
@@ -56,7 +55,6 @@ namespace Graph.Elements.Subdrawables
             FontSize = DEFAULT_FONT_SIZE;
             Font = font;
         }
-
 
         // TODO: Make this function independedt from ToWindowCoords method, so it doesn't have to be public
         public void Draw(RenderTarget target, RenderStates states)

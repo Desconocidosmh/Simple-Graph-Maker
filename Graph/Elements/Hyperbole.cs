@@ -1,5 +1,4 @@
-﻿
-namespace Graph.Elements
+﻿namespace Graph.Elements
 {
     public class Hyperbole : Element
     {
@@ -10,6 +9,5 @@ namespace Graph.Elements
 
         public override float Calculate(float x) =>
             A / x;
-        
     }
 }
