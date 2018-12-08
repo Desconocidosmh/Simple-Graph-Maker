@@ -3,7 +3,7 @@ using SFML.Graphics;
 using SFML.System;
 using Graph.Window;
 
-namespace Graph.Drawables.Subdrawables
+namespace Graph.Elements.Subdrawables
 {
     public class SpacingLineCollection : Drawable
     {

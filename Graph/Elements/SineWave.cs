@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Graph.Drawables
+namespace Graph.Elements
 {
     public class SineWave : Element
     {

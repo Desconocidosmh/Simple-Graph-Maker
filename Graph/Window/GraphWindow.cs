@@ -1,7 +1,8 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using Graph.MathUtils;
-using Graph.Drawables;
+using Graph.Elements;
+using Graph.Elements.Subdrawables;
 using System.Collections.Generic;
 
 namespace Graph.Window
@@ -60,7 +61,7 @@ namespace Graph.Window
                     float yPos = element.Calculate(xPos);
 
                     // If calculated value is NaN, start drawing next line
-                    if (yPos == float.NaN)
+                    if (float.IsNaN(yPos) || float.IsInfinity(yPos))
                     {
                         target.Draw(vertices.ToArray(), PrimitiveType.LinesStrip);
                         vertices.Clear();
@@ -87,8 +88,16 @@ namespace Graph.Window
         /// Gets all elements from the list of elements
         /// </summary>
         /// <returns>All elements of this window as one dimensional array</returns>
-        public Element[] GetElements(string name) =>
+        public Element[] GetElements() =>
             Elements.ToArray();
+
+        /// <summary>
+        /// Determines whether element is child of this window
+        /// </summary>
+        /// <param name="element">Element to check</param>
+        /// <returns>True if it's a child of this window. Otherwise false</returns>
+        public bool IsParentOf(Element element) =>
+            Elements.Contains(element);
 
         /// <summary>
         /// Finds and removes element specified as the argument from the list of elements
@@ -97,15 +106,13 @@ namespace Graph.Window
         /// <returns>True if successful; False if failed</returns>
         public bool RemoveElement(Element element)
         {
-            try
+            if (Elements.Contains(element))
             {
                 Elements.Remove(element);
                 return true;
             }
-            catch
-            {
-                return false;
-            }
+
+            return false;
         }
 
         /// <summary>

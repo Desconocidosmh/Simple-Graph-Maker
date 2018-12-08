@@ -14,8 +14,5 @@ namespace Graph.MathUtils
 
             return result;
         }
-
-        public static float AngleBetween(Vector2f start, Vector2f end) =>
-            (float)(Math.Atan2(end.Y, end.X) - Math.Atan2(start.Y, start.X)) * Transformation.RAD_TO_DEG;
     }
 }

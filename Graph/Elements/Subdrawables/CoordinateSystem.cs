@@ -1,9 +1,8 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using Graph.Window;
-using Graph.Drawables.Subdrawables;
 
-namespace Graph.Drawables
+namespace Graph.Elements.Subdrawables
 {
     /// <summary>
     /// Resembles coordinate system, which can be drawn

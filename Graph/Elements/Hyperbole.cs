@@ -1,5 +1,5 @@
 ﻿
-namespace Graph.Drawables
+namespace Graph.Elements
 {
     public class Hyperbole : Element
     {

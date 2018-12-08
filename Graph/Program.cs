@@ -2,7 +2,7 @@
 using System.Threading;
 using SFML.Graphics;
 using Graph.Window;
-using Graph.Drawables;
+using Graph.Elements;
 
 namespace Test
 {
@@ -10,6 +10,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            float y = 0;
+            float x = 9 / y;
+
             var window = new GraphWindow(1000, 1000, "Window", new Color(252, 251, 237), Color.Black, 10);
 
             var hyper = new Hyperbole(1)
@@ -29,8 +32,7 @@ namespace Test
 
             while (true)
             {
-                sine.Density -= 0.01f;
-                Thread.Sleep(15);
+                Thread.Sleep(14);
                 window.Refresh();
             }
 

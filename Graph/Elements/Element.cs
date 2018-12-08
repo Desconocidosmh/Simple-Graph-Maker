@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using Graph.System;
 
-namespace Graph.Drawables
+namespace Graph.Elements
 {
     public abstract class Element : ICalculate
     {

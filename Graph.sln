@@ -49,8 +49,8 @@ Global
 		{EC270B91-A3E8-4F65-82E7-DF3007AC71FD}.Release|ARM.Build.0 = Release|Any CPU
 		{EC270B91-A3E8-4F65-82E7-DF3007AC71FD}.Release|x64.ActiveCfg = Release|Any CPU
 		{EC270B91-A3E8-4F65-82E7-DF3007AC71FD}.Release|x64.Build.0 = Release|Any CPU
-		{EC270B91-A3E8-4F65-82E7-DF3007AC71FD}.Release|x86.ActiveCfg = Release|Any CPU
-		{EC270B91-A3E8-4F65-82E7-DF3007AC71FD}.Release|x86.Build.0 = Release|Any CPU
+		{EC270B91-A3E8-4F65-82E7-DF3007AC71FD}.Release|x86.ActiveCfg = Release|x86
+		{EC270B91-A3E8-4F65-82E7-DF3007AC71FD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

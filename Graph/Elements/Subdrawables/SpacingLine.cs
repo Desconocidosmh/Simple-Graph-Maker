@@ -2,7 +2,7 @@
 using SFML.System;
 using Graph.Window;
 
-namespace Graph.Drawables.Subdrawables
+namespace Graph.Elements.Subdrawables
 {
     public enum Orientation { Horizontal, Vertical }
 

@@ -54,21 +54,5 @@ namespace Graph_Tests
                 Assert.AreEqual(validOrderDistance, invalidOrderDistance);
             }
         }
-
-        [TestMethod]
-        public void AngleBetween_AngleIsCorrect_True()
-        {
-            Vector2f start;
-            Vector2f end;
-            float angle;
-            float correctAngle;
-
-            start = new Vector2f(-3, 5);
-            end = new Vector2f(1, 7);
-            angle = SpaceMath.AngleBetween(start, end);
-            correctAngle = -0.68f;
-
-            Assert.AreEqual(angle, correctAngle, 0.1);
-        }
     }
 }
