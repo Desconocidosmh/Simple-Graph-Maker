@@ -1,6 +1,6 @@
 # Simple_Graph_Maker ![CodeFactor](https://www.codefactor.io/repository/github/desconocidosmh/simple_graph_maker/badge)
 
-*Simple Graph Maker* is a SFML Framework which lets you easily create your own visualization of mathematical functions. It's goal is
+*Simple Graph Maker* is a SFML Framework which lets you easily create your own visualization of mathematical functions. Its goal is
 simple - help people who struggle with basic math to visualize and play with it so they can get better understanding of what's 
 happening and why it's so cool and not that hard after all.
 
