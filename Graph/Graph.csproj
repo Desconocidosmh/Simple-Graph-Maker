@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="System\ICalculate.cs" />
+    <Compile Include="System\IShiftable.cs" />
     <Compile Include="System\MenuItemAttribute.cs" />
     <Compile Include="Drawables\CoordinateSystem.cs" />
     <Compile Include="Drawables\Element.cs" />

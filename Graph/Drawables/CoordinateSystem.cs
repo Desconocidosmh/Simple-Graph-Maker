@@ -33,7 +33,7 @@ namespace Graph.Drawables
         /// Scale 10 will make coordinate system with values
         /// from (-10,-10) to (10,10)
         /// </example>
-        public int Scale
+        public float Scale
         {
             get => scale;
             set
@@ -47,7 +47,7 @@ namespace Graph.Drawables
                 }
             }
         }
-        private int scale;
+        private float scale;
 
         /// <summary>
         /// Size of the small lines dividing coordinate system into smaller parts
@@ -77,11 +77,6 @@ namespace Graph.Drawables
         /// Color of this CoordinateSystem
         /// </summary>
         public Color Color { get; set; }
-
-        /// <summary>
-        /// Has this coordinate system changed since last redraw?
-        /// </summary>
-        public bool RequiresRedraw { get; private set; }
 
         #endregion
 
@@ -125,8 +120,6 @@ namespace Graph.Drawables
         {
             DrawMainLines(target);
             DrawSpacingLines(target, SpacingLinesSize);
-
-            RequiresRedraw = false;
         }
 
         private void DrawMainLines(RenderTarget target)
@@ -134,15 +127,15 @@ namespace Graph.Drawables
             // Draw horizontal line
             target.Draw(new Vertex[]
             {
-                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(-Scale, 0)), Color),
-                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(Scale, 0)), Color)
+                new Vertex(new Vector2f(100, 0), Color),
+                new Vertex(new Vector2f(-100, 0), Color)
             }, PrimitiveType.Lines);
 
             // Draw vertical line
             target.Draw(new Vertex[]
             {
-                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(0, -Scale)), Color),
-                new Vertex(ParentWindow.ToWindowCoords(new Vector2f(0, Scale)), Color)
+                new Vertex(new Vector2f(0, 100), Color),
+                new Vertex(new Vector2f(0, -100), Color)
             }, PrimitiveType.Lines);
         }
 

@@ -6,13 +6,7 @@ namespace Graph.Window
 {
     public abstract class BaseWindow
     {
-        #region Constants
-
         protected const int DEFAULT_FOV = 100;
-
-        #endregion
-
-        #region Properties
 
         protected readonly RenderWindow Window;
 
@@ -25,10 +19,6 @@ namespace Graph.Window
         /// Resolution of this window
         /// </summary>
         public Vector2u Resolution => Window.Size;
-
-        #endregion
-
-        #region Constructors
 
         /// <param name="width">Width of the window in pixels</param>
         /// <param name="heigth">Heigth of the window in pixels</param>
@@ -45,10 +35,6 @@ namespace Graph.Window
             BackgroundColor = backgroundColor;
         }
 
-        #endregion
-
-        #region Methods
-
         protected abstract void DrawBackground(RenderTarget target);
 
         protected abstract void DrawForeground(RenderTarget target);
@@ -62,7 +48,5 @@ namespace Graph.Window
 
             Window.Display();
         }
-
-        #endregion
     }
 }

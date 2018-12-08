@@ -58,6 +58,7 @@ namespace Graph.Drawables.Subdrawables
         }
 
 
+        // TODO: Make this function independedt from ToWindowCoords method, so it doesn't have to be public
         public void Draw(RenderTarget target, RenderStates states)
         {
             Vector2f start;

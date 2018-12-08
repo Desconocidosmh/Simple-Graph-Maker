@@ -8,9 +8,8 @@ namespace Graph.Drawables
         public Hyperbole(float a) =>
             A = a;
 
-        public override float Calculate(float x)
-        {
-            return A / x;
-        }
+        public override float Calculate(float x) =>
+            A / x;
+        
     }
 }
