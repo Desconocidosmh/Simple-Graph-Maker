@@ -8,7 +8,7 @@ happening and why it's so cool and not that hard after all.
 
 # Creating a simple program
 
-```
+```csharp
 using System;
 using SFML.Graphics;
 using Graph.Window;
