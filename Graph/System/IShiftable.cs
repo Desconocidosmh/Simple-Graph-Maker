@@ -1,8 +1,9 @@
-﻿namespace Graph.System
+﻿using SFML.System;
+
+namespace Graph.System
 {
     public interface IShiftable
     {
-        float ShiftX { get; set; }
-        float ShiftY { get; set; }
+        Vector2f Shift { get; set; }
     }
 }

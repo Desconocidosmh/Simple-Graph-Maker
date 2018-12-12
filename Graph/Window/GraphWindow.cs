@@ -9,8 +9,6 @@ namespace Graph.Window
 {
     public class GraphWindow : BaseWindow
     {
-        #region Properties
-
         /// <summary>
         /// Elements drawn on top of background
         /// </summary>
@@ -20,10 +18,6 @@ namespace Graph.Window
         /// Coordinate system of this window
         /// </summary>
         public CoordinateSystem CoordinateSystem { get; private set; }
-
-        #endregion
-
-        #region Constructors
 
         /// <param name="width">Width of the window in pixels</param>
         /// <param name="heigth">Heigth of the window in pixels</param>
@@ -38,10 +32,6 @@ namespace Graph.Window
             CoordinateSystem = new CoordinateSystem(this, initialScale, coordinateSystemColor);
         }
 
-        #endregion
-
-        #region Methods
-
         protected override void DrawBackground(RenderTarget target) =>
             target.Draw(CoordinateSystem);
 
@@ -53,6 +43,12 @@ namespace Graph.Window
 
                 uint xPixels = this.Resolution.X;
 
+                // TODO: Figure out a better way to do it. Apparently,
+                // it doesn't work flawlessly. Eg. hyperbole doesn't
+                // separate into two another lines if one of its points
+                // is not perfectly aligned with one of these "xPos"
+                // points. Atm I have no slightest idea how to
+                // rectify this.
                 for (uint i = 0; i < xPixels; i++)
                 {
                     float xPos = Interpolation.Map(
@@ -140,7 +136,5 @@ namespace Graph.Window
 
             return new Vector2f(X, Y);
         }
-
-        #endregion
     }
 }
