@@ -17,8 +17,8 @@ namespace Graph.Elements
 
         public SineWave()
         {
-            Amplitude = 1;
-            Density = 1;
+            Amplitude = 0;
+            Density = 0;
         }
 
         public SineWave(float amplitude, float density)
