@@ -6,8 +6,7 @@ namespace Graph
     {
         static void Main(string[] args)
         {
-            var window = new GraphManagerWindow();
-            window.ShowDialog();
+            new GraphManagerWindow().ShowDialog();
         }
     }
 }

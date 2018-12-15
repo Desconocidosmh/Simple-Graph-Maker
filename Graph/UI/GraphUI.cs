@@ -41,6 +41,8 @@ namespace GraphUI
             {
                 templatesDropdown.Items.Add(element);
             }
+
+            templatesDropdown.SelectedIndex = 0;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -63,6 +65,12 @@ namespace GraphUI
             }
         }
 
+        private void ElementsList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                RemoveButton_Click(sender, e);
+        }
+
         private void RefreshButton_Click(object sender, EventArgs e) =>
             graphWindow.Refresh();
 
@@ -73,13 +81,41 @@ namespace GraphUI
             if (elementsList.SelectedItem == null)
                 return;
 
-            var propertiesControls = 
+            var propertiesControls =
                 UiHelper.GetControlsForElement(((MenuElement)elementsList.SelectedItem).Element);
 
             foreach (var propertyControl in propertiesControls)
             {
                 elementPropertiesBox.Controls.Add(propertyControl);
             }
+        }
+
+        private void RenameButton_Click(object sender, EventArgs e)
+        {
+            var allItems = elementsList.Items;
+            var selectedItems = elementsList.SelectedItems;
+
+            if (selectedItems.Count < 1)
+                return;
+
+            if (renameTextBox.Text == "")
+                return;
+
+            if (selectedItems.Count == 1)
+                ((MenuElement)selectedItems[0]).Name = renameTextBox.Text;
+            else
+                for (int i = 0; i < selectedItems.Count; i++)
+                {
+                    ((MenuElement)selectedItems[i]).Name = renameTextBox.Text + (i + 1);
+                }
+
+            // Refresh elementsList's content
+            for (int i = 0; i < allItems.Count; i++)
+            {
+                allItems[i] = allItems[i];
+            }
+
+            renameTextBox.Clear();
         }
     }
 }

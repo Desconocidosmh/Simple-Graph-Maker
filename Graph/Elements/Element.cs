@@ -5,6 +5,7 @@ namespace Graph.Elements
 {
     public abstract class Element : ICalculate
     {
+        [MenuProperty("Color")]
         public virtual Color Color { get; set; } = Color.Black;
 
         /// <summary>

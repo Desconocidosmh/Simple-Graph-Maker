@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using Graph.Elements;
 using Graph.System;
+using SFML.Graphics;
 
 namespace GraphUI
 {
@@ -30,6 +31,26 @@ namespace GraphUI
                     var checkBox = new CheckBox { Text = propertyAttribute.Name };
                     checkBox.CheckedChanged += (s, e) => property.SetValue(element, checkBox.Checked);
                     result.Add(checkBox);
+                }
+                else if (property.PropertyType == typeof(Color))
+                {
+                    var color = (Color)property.GetValue(element);
+                    var textBox = new TextBox { Text = string.Format("{0},{1},{2}", color.R, color.G, color.B) };
+                    textBox.TextChanged += (s, e) =>
+                    {
+                        if (textBox.Text.Count((c) => c == ',') != 2)
+                            return;
+
+                        string[] rgbStr = textBox.Text.Split(',');
+                        byte[] rgb = new byte[3];
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (!byte.TryParse(rgbStr[i], out rgb[i]))
+                                return;
+                        }
+                        property.SetValue(element, new Color(rgb[0], rgb[1], rgb[2]));
+                    };
+                    result.Add(textBox);
                 }
                 else
                 {

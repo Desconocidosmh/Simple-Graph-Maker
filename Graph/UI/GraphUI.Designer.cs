@@ -37,6 +37,8 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.elementPropertiesBox = new System.Windows.Forms.FlowLayoutPanel();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.renameTextBox = new System.Windows.Forms.TextBox();
+            this.renameButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             this.panel1.Controls.Add(this.createLabel);
             this.panel1.Location = new System.Drawing.Point(-5, -6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(410, 461);
+            this.panel1.Size = new System.Drawing.Size(410, 460);
             this.panel1.TabIndex = 0;
             // 
             // addButton
@@ -65,6 +67,9 @@
             // 
             // templatesDropdown
             // 
+            this.templatesDropdown.BackColor = System.Drawing.SystemColors.Window;
+            this.templatesDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.templatesDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.templatesDropdown.FormattingEnabled = true;
             this.templatesDropdown.Location = new System.Drawing.Point(17, 138);
             this.templatesDropdown.Name = "templatesDropdown";
@@ -87,7 +92,7 @@
             this.manageLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.manageLabel.AutoSize = true;
             this.manageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.manageLabel.Location = new System.Drawing.Point(551, 21);
+            this.manageLabel.Location = new System.Drawing.Point(559, 21);
             this.manageLabel.Name = "manageLabel";
             this.manageLabel.Size = new System.Drawing.Size(131, 31);
             this.manageLabel.TabIndex = 1;
@@ -97,16 +102,18 @@
             // 
             this.elementsList.FormattingEnabled = true;
             this.elementsList.HorizontalScrollbar = true;
+            this.elementsList.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.elementsList.Location = new System.Drawing.Point(411, 55);
             this.elementsList.Name = "elementsList";
             this.elementsList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.elementsList.Size = new System.Drawing.Size(163, 95);
             this.elementsList.TabIndex = 2;
             this.elementsList.SelectedValueChanged += new System.EventHandler(this.ElementsList_SelectedValueChanged);
+            this.elementsList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementsList_KeyDown);
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(580, 88);
+            this.removeButton.Location = new System.Drawing.Point(580, 94);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 3;
@@ -121,16 +128,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.elementPropertiesBox.BackColor = System.Drawing.Color.White;
             this.elementPropertiesBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.elementPropertiesBox.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.elementPropertiesBox.Location = new System.Drawing.Point(411, 199);
+            this.elementPropertiesBox.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.elementPropertiesBox.Location = new System.Drawing.Point(411, 238);
             this.elementPropertiesBox.Name = "elementPropertiesBox";
-            this.elementPropertiesBox.Size = new System.Drawing.Size(377, 239);
+            this.elementPropertiesBox.Size = new System.Drawing.Size(377, 200);
             this.elementPropertiesBox.TabIndex = 0;
             // 
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshButton.Location = new System.Drawing.Point(713, 170);
+            this.refreshButton.Location = new System.Drawing.Point(713, 209);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
             this.refreshButton.TabIndex = 4;
@@ -138,17 +145,37 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
+            // renameTextBox
+            // 
+            this.renameTextBox.Location = new System.Drawing.Point(411, 156);
+            this.renameTextBox.Name = "renameTextBox";
+            this.renameTextBox.Size = new System.Drawing.Size(163, 20);
+            this.renameTextBox.TabIndex = 5;
+            // 
+            // renameButton
+            // 
+            this.renameButton.Location = new System.Drawing.Point(454, 182);
+            this.renameButton.Name = "renameButton";
+            this.renameButton.Size = new System.Drawing.Size(75, 23);
+            this.renameButton.TabIndex = 6;
+            this.renameButton.Text = "Rename";
+            this.renameButton.UseVisualStyleBackColor = true;
+            this.renameButton.Click += new System.EventHandler(this.RenameButton_Click);
+            // 
             // GraphManagerWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.renameButton);
+            this.Controls.Add(this.renameTextBox);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.elementPropertiesBox);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.elementsList);
             this.Controls.Add(this.manageLabel);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "GraphManagerWindow";
             this.Text = "GraphUI";
@@ -170,5 +197,7 @@
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.FlowLayoutPanel elementPropertiesBox;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.TextBox renameTextBox;
+        private System.Windows.Forms.Button renameButton;
     }
 }
