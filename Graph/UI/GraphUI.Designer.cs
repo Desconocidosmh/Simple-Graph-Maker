@@ -42,9 +42,8 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel1.Controls.Add(this.addButton);
             this.panel1.Controls.Add(this.templatesDropdown);
@@ -56,8 +55,6 @@
             // 
             // addButton
             // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.addButton.Location = new System.Drawing.Point(171, 138);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 21);
@@ -68,8 +65,6 @@
             // 
             // templatesDropdown
             // 
-            this.templatesDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.templatesDropdown.FormattingEnabled = true;
             this.templatesDropdown.Location = new System.Drawing.Point(17, 138);
             this.templatesDropdown.Name = "templatesDropdown";
@@ -78,8 +73,7 @@
             // 
             // createLabel
             // 
-            this.createLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.createLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.createLabel.AutoSize = true;
             this.createLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.createLabel.Location = new System.Drawing.Point(130, 27);
@@ -90,8 +84,7 @@
             // 
             // manageLabel
             // 
-            this.manageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.manageLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.manageLabel.AutoSize = true;
             this.manageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.manageLabel.Location = new System.Drawing.Point(551, 21);
@@ -102,9 +95,6 @@
             // 
             // elementsList
             // 
-            this.elementsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.elementsList.FormattingEnabled = true;
             this.elementsList.HorizontalScrollbar = true;
             this.elementsList.Location = new System.Drawing.Point(411, 55);
@@ -116,8 +106,6 @@
             // 
             // removeButton
             // 
-            this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.removeButton.Location = new System.Drawing.Point(580, 88);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
@@ -128,7 +116,8 @@
             // 
             // elementPropertiesBox
             // 
-            this.elementPropertiesBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.elementPropertiesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.elementPropertiesBox.BackColor = System.Drawing.Color.White;
             this.elementPropertiesBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -140,8 +129,7 @@
             // 
             // refreshButton
             // 
-            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshButton.Location = new System.Drawing.Point(713, 170);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
@@ -161,6 +149,7 @@
             this.Controls.Add(this.elementsList);
             this.Controls.Add(this.manageLabel);
             this.Controls.Add(this.panel1);
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "GraphManagerWindow";
             this.Text = "GraphUI";
             this.panel1.ResumeLayout(false);

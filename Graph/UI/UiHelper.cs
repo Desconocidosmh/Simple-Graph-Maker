@@ -23,6 +23,8 @@ namespace GraphUI
                 var propertyAttribute =
                     (MenuPropertyAttribute)property.GetCustomAttribute(typeof(MenuPropertyAttribute));
 
+                result.Add(new Label { Text = propertyAttribute.Name, Padding = new Padding(0, 7, 0, 0) });
+
                 if (property.PropertyType == typeof(bool))
                 {
                     var checkBox = new CheckBox { Text = propertyAttribute.Name };
