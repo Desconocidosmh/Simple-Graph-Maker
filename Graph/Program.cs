@@ -1,24 +1,13 @@
-﻿using System;
-using SFML.System;
-using System.Threading;
-using SFML.Graphics;
-using Graph.Window;
-using Graph.Elements;
+﻿using GraphUI;
 
-class Program
+namespace Graph
 {
-    static void Main(string[] args)
+    class Program
     {
-        var window = new GraphWindow(1000, 1000, "Window", new Color(252, 251, 237), Color.Black, 10);
-        var hyper = new SquareFunction(1, 0, 1);
-
-        window.AddElement(hyper);
-
-        while (true)
+        static void Main(string[] args)
         {
-            window.Refresh();
-            Thread.Sleep(15);
+            var window = new GraphManagerWindow();
+            window.ShowDialog();
         }
     }
-
 }
