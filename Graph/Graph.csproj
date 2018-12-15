@@ -139,13 +139,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="csfml-audio-2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="csfml-graphics-2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="csfml-network-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="csfml-system-2.dll">
@@ -154,19 +148,6 @@
     <Content Include="csfml-window-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="libsndfile-1.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="openal32.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OpenTK.Compatibility.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OpenTK.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\SFML_Libs\sfmlnet-audio-2.dll" />
     <Content Include="Resources\SFML_Libs\sfmlnet-graphics-2.dll" />
     <Content Include="Resources\SFML_Libs\sfmlnet-system-2.dll" />
     <Content Include="Resources\SFML_Libs\sfmlnet-window-2.dll" />
