@@ -1,0 +1,13 @@
+version: '{build}'
+image: Visual Studio 2017
+build_script:
+- ps: ./Build.ps1 -majorMinor "4.2" -patch "$env:APPVEYOR_BUILD_VERSION" -customLogger "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+artifacts:
+- path: SerilogWeb.*.nupkg
+deploy:
+- provider: NuGet
+  api_key:
+    secure: LDHWXdL5WAF7TBoy3Uqc8F/5vMsxrueba2U/GbL1Io6z3JtREljb6WOFqKsFGmdR
+  skip_symbols: true
+  on:
+    branch: master
