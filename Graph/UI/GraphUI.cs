@@ -127,6 +127,8 @@ namespace GraphUI
         {
             if(realtimeCheckBox.Checked)
             {
+                refreshButton.Enabled = false;
+
                 tokenSource = new CancellationTokenSource();
                 var token = tokenSource.Token;
                 Task.Run(() => 
@@ -141,6 +143,7 @@ namespace GraphUI
             else
             {
                 tokenSource?.Cancel();
+                refreshButton.Enabled = true;
             }
         }
     }
