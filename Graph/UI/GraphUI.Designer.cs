@@ -47,17 +47,18 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.addButton);
             this.panel1.Controls.Add(this.templatesDropdown);
             this.panel1.Controls.Add(this.createLabel);
             this.panel1.Location = new System.Drawing.Point(-5, -6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(410, 460);
+            this.panel1.Size = new System.Drawing.Size(250, 460);
             this.panel1.TabIndex = 0;
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(171, 138);
+            this.addButton.Location = new System.Drawing.Point(157, 87);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 21);
             this.addButton.TabIndex = 2;
@@ -71,7 +72,7 @@
             this.templatesDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.templatesDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.templatesDropdown.FormattingEnabled = true;
-            this.templatesDropdown.Location = new System.Drawing.Point(17, 138);
+            this.templatesDropdown.Location = new System.Drawing.Point(18, 87);
             this.templatesDropdown.Name = "templatesDropdown";
             this.templatesDropdown.Size = new System.Drawing.Size(133, 21);
             this.templatesDropdown.TabIndex = 1;
@@ -80,10 +81,10 @@
             // 
             this.createLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.createLabel.AutoSize = true;
-            this.createLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.createLabel.Location = new System.Drawing.Point(130, 27);
+            this.createLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.createLabel.Location = new System.Drawing.Point(50, 15);
             this.createLabel.Name = "createLabel";
-            this.createLabel.Size = new System.Drawing.Size(125, 31);
+            this.createLabel.Size = new System.Drawing.Size(131, 31);
             this.createLabel.TabIndex = 0;
             this.createLabel.Text = "CREATE";
             // 
@@ -91,29 +92,30 @@
             // 
             this.manageLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.manageLabel.AutoSize = true;
-            this.manageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.manageLabel.Location = new System.Drawing.Point(559, 21);
+            this.manageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.manageLabel.Location = new System.Drawing.Point(457, 9);
             this.manageLabel.Name = "manageLabel";
-            this.manageLabel.Size = new System.Drawing.Size(131, 31);
+            this.manageLabel.Size = new System.Drawing.Size(137, 31);
             this.manageLabel.TabIndex = 1;
             this.manageLabel.Text = "MANAGE";
             // 
             // elementsList
             // 
+            this.elementsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.elementsList.FormattingEnabled = true;
             this.elementsList.HorizontalScrollbar = true;
             this.elementsList.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.elementsList.Location = new System.Drawing.Point(411, 55);
+            this.elementsList.Location = new System.Drawing.Point(251, 61);
             this.elementsList.Name = "elementsList";
             this.elementsList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.elementsList.Size = new System.Drawing.Size(163, 95);
+            this.elementsList.Size = new System.Drawing.Size(163, 93);
             this.elementsList.TabIndex = 2;
             this.elementsList.SelectedValueChanged += new System.EventHandler(this.ElementsList_SelectedValueChanged);
             this.elementsList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementsList_KeyDown);
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(580, 94);
+            this.removeButton.Location = new System.Drawing.Point(420, 100);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 3;
@@ -127,11 +129,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.elementPropertiesBox.BackColor = System.Drawing.Color.White;
+            this.elementPropertiesBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.elementPropertiesBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.elementPropertiesBox.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.elementPropertiesBox.Location = new System.Drawing.Point(411, 238);
+            this.elementPropertiesBox.Location = new System.Drawing.Point(251, 238);
             this.elementPropertiesBox.Name = "elementPropertiesBox";
-            this.elementPropertiesBox.Size = new System.Drawing.Size(377, 200);
+            this.elementPropertiesBox.Size = new System.Drawing.Size(537, 200);
             this.elementPropertiesBox.TabIndex = 0;
             // 
             // refreshButton
@@ -147,14 +150,15 @@
             // 
             // renameTextBox
             // 
-            this.renameTextBox.Location = new System.Drawing.Point(411, 156);
+            this.renameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.renameTextBox.Location = new System.Drawing.Point(251, 162);
             this.renameTextBox.Name = "renameTextBox";
             this.renameTextBox.Size = new System.Drawing.Size(163, 20);
             this.renameTextBox.TabIndex = 5;
             // 
             // renameButton
             // 
-            this.renameButton.Location = new System.Drawing.Point(454, 182);
+            this.renameButton.Location = new System.Drawing.Point(294, 188);
             this.renameButton.Name = "renameButton";
             this.renameButton.Size = new System.Drawing.Size(75, 23);
             this.renameButton.TabIndex = 6;

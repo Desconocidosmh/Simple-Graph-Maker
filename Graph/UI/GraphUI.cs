@@ -19,6 +19,8 @@ namespace GraphUI
             InitializeComponent();
 
             InitializeElementsDropdown();
+
+            graphWindow.Refresh();
         }
 
         private void InitializeElementsDropdown()
