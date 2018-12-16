@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\CubicFunction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="System\MenuClassAttribute.cs" />
     <Compile Include="UI\GraphUI.cs">
