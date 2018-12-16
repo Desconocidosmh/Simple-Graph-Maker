@@ -58,12 +58,14 @@
             // 
             // addButton
             // 
+            this.addButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.Location = new System.Drawing.Point(157, 87);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 21);
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // templatesDropdown
@@ -115,12 +117,14 @@
             // 
             // removeButton
             // 
+            this.removeButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeButton.Location = new System.Drawing.Point(420, 100);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 3;
             this.removeButton.Text = "Remove";
-            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // elementPropertiesBox
@@ -140,12 +144,14 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.refreshButton.Location = new System.Drawing.Point(713, 209);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
             this.refreshButton.TabIndex = 4;
             this.refreshButton.Text = "Refresh";
-            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.UseVisualStyleBackColor = false;
             this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // renameTextBox
@@ -158,12 +164,14 @@
             // 
             // renameButton
             // 
+            this.renameButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.renameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.renameButton.Location = new System.Drawing.Point(294, 188);
             this.renameButton.Name = "renameButton";
             this.renameButton.Size = new System.Drawing.Size(75, 23);
             this.renameButton.TabIndex = 6;
             this.renameButton.Text = "Rename";
-            this.renameButton.UseVisualStyleBackColor = true;
+            this.renameButton.UseVisualStyleBackColor = false;
             this.renameButton.Click += new System.EventHandler(this.RenameButton_Click);
             // 
             // GraphManagerWindow
