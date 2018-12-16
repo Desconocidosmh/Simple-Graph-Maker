@@ -186,7 +186,7 @@
             // 
             // realtimeCheckBox
             // 
-            this.realtimeCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.realtimeCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.realtimeCheckBox.AutoSize = true;
             this.realtimeCheckBox.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F);
             this.realtimeCheckBox.Location = new System.Drawing.Point(634, 213);
