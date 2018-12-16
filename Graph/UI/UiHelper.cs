@@ -19,6 +19,9 @@ namespace GraphUI
 
             var result = new List<Control>();
 
+            // It's a mess, but I lack better ideas how to handle
+            // creating controls with different behaviour for
+            // different value types
             foreach (var property in properties)
             {
                 var propertyAttribute =
@@ -52,12 +55,24 @@ namespace GraphUI
                     };
                     result.Add(textBox);
                 }
-                else
+                else if (property.PropertyType == typeof(float))
                 {
                     var textBox = new TextBox { Text = property.GetValue(element).ToString() };
                     textBox.TextChanged += (s, e) =>
                     {
                         if (float.TryParse(textBox.Text, out float res))
+                            property.SetValue(element, res);
+                        else
+                            property.SetValue(element, 0);
+                    };
+                    result.Add(textBox);
+                }
+                else if (property.PropertyType == typeof(int))
+                {
+                    var textBox = new TextBox { Text = property.GetValue(element).ToString() };
+                    textBox.TextChanged += (s, e) =>
+                    {
+                        if (int.TryParse(textBox.Text, out int res))
                             property.SetValue(element, res);
                         else
                             property.SetValue(element, 0);

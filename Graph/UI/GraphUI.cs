@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -118,6 +120,28 @@ namespace GraphUI
             }
 
             renameTextBox.Clear();
+        }
+
+        CancellationTokenSource tokenSource;
+        private void RealtimeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(realtimeCheckBox.Checked)
+            {
+                tokenSource = new CancellationTokenSource();
+                var token = tokenSource.Token;
+                Task.Run(() => 
+                {
+                    while (!token.IsCancellationRequested)
+                    {
+                        realtimeCheckBox.Invoke(new Action(graphWindow.Refresh));
+                        Task.Delay(50).Wait();
+                    }
+                });
+            }
+            else
+            {
+                tokenSource?.Cancel();
+            }
         }
     }
 }

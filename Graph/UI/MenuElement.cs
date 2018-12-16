@@ -11,7 +11,7 @@ namespace GraphUI
 
         public MenuElement(MenuElementTemplate template)
         {
-            Name = "New " + template.Name;
+            Name = template.Name;
             Element = (Element)template.Type.GetConstructor(new Type[0]).Invoke(null);
         }
 

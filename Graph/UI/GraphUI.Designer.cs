@@ -39,6 +39,7 @@
             this.refreshButton = new System.Windows.Forms.Button();
             this.renameTextBox = new System.Windows.Forms.TextBox();
             this.renameButton = new System.Windows.Forms.Button();
+            this.realtimeCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +61,7 @@
             // 
             this.addButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addButton.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addButton.Location = new System.Drawing.Point(157, 87);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 21);
@@ -73,20 +75,21 @@
             this.templatesDropdown.BackColor = System.Drawing.SystemColors.Window;
             this.templatesDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.templatesDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.templatesDropdown.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.templatesDropdown.FormattingEnabled = true;
             this.templatesDropdown.Location = new System.Drawing.Point(18, 87);
             this.templatesDropdown.Name = "templatesDropdown";
-            this.templatesDropdown.Size = new System.Drawing.Size(133, 21);
+            this.templatesDropdown.Size = new System.Drawing.Size(133, 20);
             this.templatesDropdown.TabIndex = 1;
             // 
             // createLabel
             // 
             this.createLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.createLabel.AutoSize = true;
-            this.createLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.createLabel.Location = new System.Drawing.Point(50, 15);
+            this.createLabel.Font = new System.Drawing.Font("Roboto-Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.createLabel.Location = new System.Drawing.Point(64, 14);
             this.createLabel.Name = "createLabel";
-            this.createLabel.Size = new System.Drawing.Size(131, 31);
+            this.createLabel.Size = new System.Drawing.Size(120, 33);
             this.createLabel.TabIndex = 0;
             this.createLabel.Text = "CREATE";
             // 
@@ -94,23 +97,25 @@
             // 
             this.manageLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.manageLabel.AutoSize = true;
-            this.manageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.manageLabel.Font = new System.Drawing.Font("Roboto-Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.manageLabel.Location = new System.Drawing.Point(457, 9);
             this.manageLabel.Name = "manageLabel";
-            this.manageLabel.Size = new System.Drawing.Size(137, 31);
+            this.manageLabel.Size = new System.Drawing.Size(133, 33);
             this.manageLabel.TabIndex = 1;
             this.manageLabel.Text = "MANAGE";
             // 
             // elementsList
             // 
             this.elementsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.elementsList.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.elementsList.FormattingEnabled = true;
             this.elementsList.HorizontalScrollbar = true;
             this.elementsList.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.elementsList.ItemHeight = 12;
             this.elementsList.Location = new System.Drawing.Point(251, 61);
             this.elementsList.Name = "elementsList";
             this.elementsList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.elementsList.Size = new System.Drawing.Size(163, 93);
+            this.elementsList.Size = new System.Drawing.Size(163, 86);
             this.elementsList.TabIndex = 2;
             this.elementsList.SelectedValueChanged += new System.EventHandler(this.ElementsList_SelectedValueChanged);
             this.elementsList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementsList_KeyDown);
@@ -119,6 +124,7 @@
             // 
             this.removeButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeButton.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeButton.Location = new System.Drawing.Point(420, 100);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
@@ -135,6 +141,7 @@
             this.elementPropertiesBox.BackColor = System.Drawing.Color.White;
             this.elementPropertiesBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.elementPropertiesBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.elementPropertiesBox.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.elementPropertiesBox.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.elementPropertiesBox.Location = new System.Drawing.Point(251, 238);
             this.elementPropertiesBox.Name = "elementPropertiesBox";
@@ -146,6 +153,7 @@
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshButton.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refreshButton.Location = new System.Drawing.Point(713, 209);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
@@ -157,6 +165,7 @@
             // renameTextBox
             // 
             this.renameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.renameTextBox.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.renameTextBox.Location = new System.Drawing.Point(251, 162);
             this.renameTextBox.Name = "renameTextBox";
             this.renameTextBox.Size = new System.Drawing.Size(163, 20);
@@ -166,6 +175,7 @@
             // 
             this.renameButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.renameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.renameButton.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.renameButton.Location = new System.Drawing.Point(294, 188);
             this.renameButton.Name = "renameButton";
             this.renameButton.Size = new System.Drawing.Size(75, 23);
@@ -174,10 +184,26 @@
             this.renameButton.UseVisualStyleBackColor = false;
             this.renameButton.Click += new System.EventHandler(this.RenameButton_Click);
             // 
+            // realtimeCheckBox
+            // 
+            this.realtimeCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.realtimeCheckBox.AutoSize = true;
+            this.realtimeCheckBox.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F);
+            this.realtimeCheckBox.Location = new System.Drawing.Point(634, 213);
+            this.realtimeCheckBox.Name = "realtimeCheckBox";
+            this.realtimeCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.realtimeCheckBox.Size = new System.Drawing.Size(73, 16);
+            this.realtimeCheckBox.TabIndex = 7;
+            this.realtimeCheckBox.Text = "Realtime";
+            this.realtimeCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.realtimeCheckBox.UseVisualStyleBackColor = true;
+            this.realtimeCheckBox.CheckedChanged += new System.EventHandler(this.RealtimeCheckBox_CheckedChanged);
+            // 
             // GraphManagerWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.realtimeCheckBox);
             this.Controls.Add(this.renameButton);
             this.Controls.Add(this.renameTextBox);
             this.Controls.Add(this.refreshButton);
@@ -211,5 +237,6 @@
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.TextBox renameTextBox;
         private System.Windows.Forms.Button renameButton;
+        private System.Windows.Forms.CheckBox realtimeCheckBox;
     }
 }
