@@ -1,6 +1,6 @@
 ﻿using System;
 using Graph.System;
-using SFML.System;
+using SFML.Window;
 
 namespace Graph.Elements
 {

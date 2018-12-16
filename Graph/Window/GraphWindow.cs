@@ -1,5 +1,5 @@
 ﻿using SFML.Graphics;
-using SFML.System;
+using SFML.Window;
 using Graph.MathUtils;
 using Graph.Elements;
 using Graph.Elements.Subdrawables;

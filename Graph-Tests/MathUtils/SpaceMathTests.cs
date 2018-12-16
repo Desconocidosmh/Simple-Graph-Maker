@@ -1,5 +1,5 @@
 ﻿using System;
-using SFML.System;
+using SFML.Window;
 using Graph.MathUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
