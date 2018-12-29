@@ -1,10 +1,10 @@
-# Simple Graph Maker ![Build status](https://ci.appveyor.com/api/projects/status/github/Desconocidosmh/Simple-Graph-Maker?branch=master&svg=true) [![CodeFactor](https://www.codefactor.io/repository/github/desconocidosmh/simple-graph-maker/badge)](https://www.codefactor.io/repository/github/desconocidosmh/simple-graph-maker)
+# Simple Graph Maker [![CodeFactor](https://www.codefactor.io/repository/github/desconocidosmh/simple-graph-maker/badge)](https://www.codefactor.io/repository/github/desconocidosmh/simple-graph-maker)
 
 *Simple Graph Maker* is a SFML Framework and a tool which lets you easily create your own visualization of mathematical functions. Its goal is
 simple - help people who struggle with basic math to visualize and play with it so they can get better understanding of what's 
 happening and why it's so cool and not that hard after all.
 
-<a href="https://imgur.com/PDSch0q"><img src="https://i.imgur.com/PDSch0q.gif" title="source: imgur.com" /></a>
+<img src="https://i.imgur.com/PDSch0q.gif" title="source: imgur.com" />
 
 # Creating a simple program
 
